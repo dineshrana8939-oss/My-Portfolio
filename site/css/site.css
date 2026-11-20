@@ -373,7 +373,7 @@ main { overflow-x: clip; } /* hover glows spill 60px past edge elements; clip (n
 .work__art img { -webkit-mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 55%, transparent 100%); mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 55%, transparent 100%); }
 /* tints match on both sides of every join, so no step is visible */
 .journey { background: linear-gradient(var(--sky-ground), rgba(238, 243, 248, .18) 30vh, rgba(238, 243, 248, .18) 38vh, var(--veil) 70vh); }
-.beyond { background: linear-gradient(var(--veil), rgba(238, 243, 248, .18) 26vh, rgba(238, 243, 248, .18) 36vh, var(--veil) 66vh); }
+.beyond { background: linear-gradient(var(--veil), rgba(5, 7, 12, .18) 26vh, rgba(5, 7, 12, .18) 36vh, var(--veil) 66vh); }
 .expertise { background: linear-gradient(var(--veil) calc(100% - 45vh), var(--sky-ground)); }
 .work { background: linear-gradient(var(--sky-ground), var(--veil) 45vh); }
 
