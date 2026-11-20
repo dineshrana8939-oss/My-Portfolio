@@ -89,6 +89,34 @@
     catch { location.href = `mailto:${b.dataset.copy}`; }
   }));
 
+  /* ---------- Cursor light: soft sun through the mist; pale-blue glow inside hovered elements ---------- */
+  if (fine && matchMedia('(hover: hover)').matches) {
+    $$('.domain, .case__body, .mission, .work__index a, .btn, .nav__btn, .freq li, .solve li, .path li, .legend li, .principles li, .capgrid section').forEach((el) => el.classList.add('lit'));
+    if (!reduce) {
+      const halo = document.createElement('div');
+      halo.className = 'sunlight'; halo.setAttribute('aria-hidden', 'true');
+      for (let i = 0; i < 9; i++) { // a few light specks that ride with the light
+        const s = document.createElement('i'), a = Math.random() * Math.PI * 2, r = 60 + Math.random() * 220;
+        s.style.cssText = `left:${Math.round(380 + Math.cos(a) * r)}px;top:${Math.round(380 + Math.sin(a) * r)}px;--dur:${(7 + Math.random() * 6).toFixed(1)}s;--del:${(-Math.random() * 8).toFixed(1)}s;--dx:${Math.round(Math.random() * 24 - 12)}px;--dy:${Math.round(-8 - Math.random() * 16)}px`;
+        halo.appendChild(s);
+      }
+      document.body.appendChild(halo);
+      let hx = innerWidth / 2, hy = innerHeight / 2, tx = hx, ty = hy, moving = false;
+      const drift = () => { // delayed follow: the light floats after the cursor and settles
+        hx += (tx - hx) * 0.09; hy += (ty - hy) * 0.09;
+        halo.style.transform = `translate3d(${hx.toFixed(1)}px, ${hy.toFixed(1)}px, 0)`;
+        if (Math.abs(tx - hx) + Math.abs(ty - hy) > 0.4) requestAnimationFrame(drift); else moving = false;
+      };
+      addEventListener('pointermove', (e) => {
+        tx = e.clientX; ty = e.clientY; halo.classList.add('on');
+        if (!moving) { moving = true; requestAnimationFrame(drift); }
+        const el = e.target.closest && e.target.closest('.lit');
+        if (el) { const b = el.getBoundingClientRect(); el.style.setProperty('--gx', `${Math.round(e.clientX - b.left + 60)}px`); el.style.setProperty('--gy', `${Math.round(e.clientY - b.top + 60)}px`); }
+      }, { passive: true });
+      document.documentElement.addEventListener('pointerleave', () => halo.classList.remove('on'));
+    }
+  }
+
   /* ---------- One frame: read all rects, then write ---------- */
   let ticking = false, lastActive = -1, lastOn = 0;
   function frame() {
