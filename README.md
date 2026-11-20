@@ -1,5 +1,7 @@
 # Dinesh Ravikumar: portfolio
 
+**Live site: https://dineshrana8939-oss.github.io/My-Portfolio/**
+
 A long-form, scroll-driven personal portfolio: astronaut and cloud imagery, an 8-column editorial grid, and eight chapters (journey, expertise, project missions, skills, experience, beyond, contact). Plain HTML, CSS and JavaScript, with **no framework and no dependencies**, hosted on **GitHub Pages**.
 
 ## Structure
@@ -14,7 +16,6 @@ site/                  ← everything that gets published
 scripts/build.mjs      ← production build: validates every asset reference, copies site/ → dist/
 .github/workflows/     ← GitHub Actions: build + deploy to Pages on push to main
 docs/DESIGN_SYSTEM.md  ← type scale, grid, colours, spacing, motion rules
-docs/ASSET_MANIFEST.md ← every image: source, photographer, size, licence
 ```
 
 ## Run locally
@@ -63,7 +64,3 @@ The build fails if any image, stylesheet or script referenced by the HTML or CSS
 ## Static-hosting limits
 
 GitHub Pages serves static files only. The current site needs no server: contact is a copy-email button plus links. A future contact *form* would need a hosted form endpoint (for example Formspree or Getform, free tiers), and any server logic would need a separate host.
-
-## Credits
-
-Photography from Unsplash (free licence): Bradley Dunn, Thomas Koukas, Mads Schmidt Rasmussen, Alex Shuper, Daniel Páscoa, Benjamin DeYoung, plus the ascent-sequence photos listed in `docs/ASSET_MANIFEST.md`. Fonts: Geist, Geist Mono and Instrument Serif (Google Fonts).
