@@ -101,15 +101,26 @@
         halo.appendChild(s);
       }
       document.body.appendChild(halo);
-      let hx = innerWidth / 2, hy = innerHeight / 2, tx = hx, ty = hy, moving = false;
-      const drift = () => { // delayed follow: the light floats after the cursor and settles
-        hx += (tx - hx) * 0.09; hy += (ty - hy) * 0.09;
+      const ring = document.createElement('div');
+      ring.className = 'cursor-ring'; ring.setAttribute('aria-hidden', 'true');
+      document.body.appendChild(ring);
+      let hx = innerWidth / 2, hy = innerHeight / 2, tx = hx, ty = hy, rx = hx, ry = hy, moving = false, lastY = scrollY, vel = 0;
+      const drift = () => { // delayed follow: the ring trails closely, the light floats further behind; scroll speed stretches the ring
+        hx += (tx - hx) * 0.09; hy += (ty - hy) * 0.09; rx += (tx - rx) * 0.22; ry += (ty - ry) * 0.22;
+        vel += (Math.min(Math.abs(scrollY - lastY) / 50, .6) - vel) * 0.2; lastY = scrollY;
         halo.style.transform = `translate3d(${hx.toFixed(1)}px, ${hy.toFixed(1)}px, 0)`;
-        if (Math.abs(tx - hx) + Math.abs(ty - hy) > 0.4) requestAnimationFrame(drift); else moving = false;
+        ring.style.setProperty('--x', `${rx.toFixed(1)}px`); ring.style.setProperty('--y', `${ry.toFixed(1)}px`); ring.style.setProperty('--sy', (1 + vel).toFixed(3));
+        if (Math.abs(tx - hx) + Math.abs(ty - hy) > 0.4 || vel > 0.005) requestAnimationFrame(drift); else moving = false;
       };
+      const wake = () => { if (!moving) { moving = true; requestAnimationFrame(drift); } };
+      addEventListener('scroll', wake, { passive: true });
+      addEventListener('pointerdown', () => ring.classList.add('is-down'));
+      addEventListener('pointerup', () => ring.classList.remove('is-down'));
+      document.documentElement.addEventListener('pointerleave', () => ring.classList.remove('on'));
       addEventListener('pointermove', (e) => {
-        tx = e.clientX; ty = e.clientY; halo.classList.add('on');
-        if (!moving) { moving = true; requestAnimationFrame(drift); }
+        tx = e.clientX; ty = e.clientY; halo.classList.add('on'); ring.classList.add('on');
+        ring.classList.toggle('is-link', !!(e.target.closest && e.target.closest('a, button, [role="button"], .star')));
+        wake();
         const el = e.target.closest && e.target.closest('.lit');
         if (el) { const b = el.getBoundingClientRect(); el.style.setProperty('--gx', `${Math.round(e.clientX - b.left + 60)}px`); el.style.setProperty('--gy', `${Math.round(e.clientY - b.top + 60)}px`); }
       }, { passive: true });

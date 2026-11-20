@@ -459,3 +459,26 @@ main { overflow-x: clip; } /* hover glows spill 60px past edge elements; clip (n
   .lit:hover::after { opacity: 1; transition-duration: .2s; }
 }
 @media (prefers-reduced-motion: reduce) { .sunlight { display: none; } }
+
+/* cursor ring: trails the pointer, swells over anything clickable, stretches with scroll speed (fine pointers, motion allowed) */
+@property --k { syntax: "<number>"; inherits: false; initial-value: 1; }
+.cursor-ring { position: fixed; left: 0; top: 0; z-index: 46; width: 34px; height: 34px; margin: -17px 0 0 -17px; border-radius: 50%; border: 1px solid rgba(62, 108, 168, .55); pointer-events: none; opacity: 0;
+  transform: translate3d(var(--x, -100px), var(--y, -100px), 0) scale(var(--k)) scaleY(var(--sy, 1)); transition: opacity .5s var(--ease), --k .45s var(--ease), background-color .35s, border-color .35s; will-change: transform; }
+.cursor-ring.on { opacity: 1; }
+.cursor-ring.is-link { --k: 1.9; background-color: rgba(186, 211, 246, .16); border-color: rgba(62, 108, 168, .28); }
+.cursor-ring.is-down { --k: .8; }
+.atmos.is-space ~ .cursor-ring { border-color: rgba(206, 222, 250, .6); }
+.atmos.is-space ~ .cursor-ring.is-link { background-color: rgba(170, 195, 255, .12); }
+.atmos.is-space ~ .sunlight { background: radial-gradient(closest-side, rgba(176, 200, 255, .11), rgba(130, 160, 235, .07) 45%, rgba(130, 160, 235, 0)); }
+
+/* scroll cue: a slim mouse with a gliding dot and a line drawing down; fades as the hero scrolls away */
+.scrollcue { position: absolute; left: 50%; bottom: 3.5vh; z-index: 4; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; opacity: calc(.85 - var(--hp, 0) * 6); transition: color .3s; }
+.scrollcue:hover { color: var(--accent); }
+.scrollcue__mouse { position: relative; width: 22px; height: 34px; border: 1.5px solid currentColor; border-radius: 12px; }
+.scrollcue__mouse i { position: absolute; left: 50%; top: 6px; width: 3px; height: 7px; margin-left: -1.5px; border-radius: 2px; background: currentColor; animation: cue-dot 2.2s var(--ease) infinite; }
+.scrollcue__text { font: 500 10px/1 var(--f-mono); letter-spacing: .16em; text-transform: uppercase; }
+.scrollcue__line { width: 1px; height: 38px; background: linear-gradient(currentColor, transparent); animation: cue-line 2.2s var(--ease) infinite; }
+@keyframes cue-dot { 0% { transform: translateY(0); opacity: 0; } 20% { opacity: 1; } 70% { transform: translateY(12px); opacity: 0; } 100% { transform: translateY(12px); opacity: 0; } }
+@keyframes cue-line { 0% { transform: scaleY(0); transform-origin: top; } 50% { transform: scaleY(1); transform-origin: top; } 51% { transform-origin: bottom; } 100% { transform: scaleY(0); transform-origin: bottom; } }
+@media (max-width: 760px) { .scrollcue { display: none; } }
+@media (prefers-reduced-motion: reduce) { .scrollcue__mouse i, .scrollcue__line { animation: none; } .cursor-ring { display: none; } }
