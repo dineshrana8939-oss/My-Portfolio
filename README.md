@@ -38,7 +38,6 @@ The build fails if any image, stylesheet or script referenced by the HTML or CSS
 1. Push this repository to `dineshrana8939-oss/My-Portfolio`.
 2. On GitHub, go to **Settings → Pages → Build and deployment → Source: GitHub Actions**.
 3. Every push to `main` runs `.github/workflows/deploy.yml`, which builds, validates and publishes. The site appears at `https://dineshrana8939-oss.github.io/My-Portfolio/`. All paths are relative, so this sub-path works without configuration.
-4. Before going public, remove `<meta name="robots" content="noindex">` from `site/index.html`, so search engines can index the site.
 
 ### Custom domain (later)
 1. Add a file `site/CNAME` containing just the domain, for example `dineshravikumar.com`.
