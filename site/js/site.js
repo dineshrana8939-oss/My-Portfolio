@@ -118,7 +118,8 @@
   }
 
   /* ---------- One frame: read all rects, then write ---------- */
-  let ticking = false, lastActive = -1, lastOn = 0;
+  let ticking = false, lastActive = -1;
+  const art = $('.work__art img');
   function frame() {
     ticking = false;
     const vh = innerHeight, y = scrollY, docH = document.documentElement.scrollHeight;
@@ -150,22 +151,27 @@
       bR.forEach((r, i) => { if (r.bottom > 0 && r.top < vh) bands[i].style.setProperty('--par', `${((r.top + r.height / 2 - vh / 2) / vh * -60).toFixed(1)}px`); });
       if (mR && mR.bottom > 0 && mR.top < vh) mist.style.setProperty('--mp', clamp((vh - mR.top) / (vh + mR.height)).toFixed(3));
     }
-    let on = -1; aR.forEach((r, i) => { if (r.top < vh * 0.6 && r.bottom > vh * 0.4) on = i; });
-    if (on < 0) on = lastOn; else lastOn = on;
-    aR.forEach((r, i) => { if (r.top < vh * 2 && r.bottom > -vh) { load(aImgs[i]); if (fore && !reduce) load(fore); } });
-    // each chapter flies through its own sky: zoom follows that chapter's scroll progress directly (no lerp)
+    // each chapter's photo is clipped to that chapter's own box, so no chapter ever shows another chapter's picture
+    // and there is no timed cross-fade; the photo pops in zoomed and settles as its chapter rises, then drifts closer
     const prog = (r) => clamp((vh - r.top) / (vh + r.height));
     aImgs.forEach((im, i) => {
-      im.classList.toggle('is-on', i === on);
-      const r = aR[i];
-      if (!reduce && r.top < vh * 2 && r.bottom > -vh) { const p = prog(r); im.style.transform = `scale(${(1.04 + p * .26).toFixed(4)}) translate3d(0, ${(-p * 2.5).toFixed(2)}%, 0)`; }
+      const r = aR[i], vis = r.top < vh && r.bottom > 0;
+      if (r.top < vh * 2 && r.bottom > -vh) load(im);
+      im.classList.toggle('is-on', vis);
+      if (!vis) return;
+      im.style.clipPath = `inset(${Math.max(0, r.top).toFixed(1)}px 0 ${Math.max(0, vh - r.bottom).toFixed(1)}px 0)`;
+      if (!reduce) { const s = 1.3 - ease(clamp((vh - r.top) / vh)) * .26 + clamp(-r.top / Math.max(r.height - vh, 1)) * .1; im.style.transform = `scale(${s.toFixed(4)})`; }
     });
-    if (fore && !reduce && on > -1) {
-      const q = prog(aR[on]);
+    const midI = aR.findIndex((r) => r.top <= vh / 2 && r.bottom > vh / 2);
+    if (fore && !reduce) { // the drifting cloud bank belongs to the sky chapters only
+      const sky = midI > -1 && aSecs[midI].dataset.env === 'sky', q = sky ? prog(aR[midI]) : 0;
+      if (sky) load(fore);
       fore.style.opacity = (Math.sin(Math.PI * q) * .55).toFixed(3);
       fore.style.transform = `translate3d(0, ${((1 - q) * 30 - 10).toFixed(2)}vh, 0) scale(${(1 + q * .4).toFixed(4)})`;
     }
-    atmos.classList.toggle('is-space', on > -1 && aSecs[on].dataset.env === 'space');
+    const midEnv = envs[eR.findIndex((r) => r.top <= vh / 2 && r.bottom > vh / 2)];
+    atmos.classList.toggle('is-space', !!midEnv && midEnv.dataset.env === 'space');
+    if (art && !reduce) { const r = art.getBoundingClientRect(); if (r.bottom > 0 && r.top < vh) art.style.setProperty('--pop', (.78 + ease(clamp((vh - r.top) / (vh * .8))) * .22 + clamp((vh - r.top) / (vh + r.height)) * .06).toFixed(4)); }
     cases.forEach((c, i) => c.style.setProperty('--draw', reduce ? 1 : clamp((vh * 0.85 - cR[i].top) / (vh * 0.6)).toFixed(3)));
     if (sR) skyEl.style.setProperty('--sky-p', reduce ? 1 : clamp((vh - sR.top) / (vh * 0.9)).toFixed(3));
     if (lR) log.style.setProperty('--log-p', clamp((vh * 0.55 - lR.top) / lR.height).toFixed(3));
