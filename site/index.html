@@ -19,30 +19,22 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..800&family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
   <link rel="preload" as="image" href="assets/img/hero-astronaut-2560.webp" fetchpriority="high">
-  <link rel="stylesheet" href="css/site.css?v=roadmap11">
-  <script src="js/site.js?v=roadmap11" defer></script>
+  <link rel="stylesheet" href="css/site.css?v=short3">
+  <script src="js/site.js?v=short3" defer></script>
 </head>
 <body data-env="sky">
 <a class="skip" href="#main">Skip to content</a>
 <!-- Atmosphere: one photograph per chapter behind the whole page; chapters are translucent veils over it -->
 <div class="atmos" aria-hidden="true">
-  <img class="atmos__img " data-for="journey" data-src="assets/img/ch-journey-1280.webp" data-src-lg="assets/img/ch-journey-2432.webp" alt="">
-  <img class="atmos__img " data-for="expertise" data-src="assets/img/ch-expertise-1280.webp" data-src-lg="assets/img/ch-expertise-2432.webp" alt="">
-  <img class="atmos__img" data-for="work" data-src="assets/img/ch-work-1280.webp" data-src-lg="assets/img/ch-work-2432.webp" alt="">
-  <img class="atmos__img" data-for="skills" data-src="assets/img/ch-skills-1280.webp" data-src-lg="assets/img/ch-skills-2432.webp" alt="">
-  <img class="atmos__img" data-for="experience" data-src="assets/img/ch-experience-1280.webp" data-src-lg="assets/img/ch-experience-2432.webp" alt="">
-  <img class="atmos__img " data-for="beyond" data-src="assets/img/ch-beyond-1280.webp" data-src-lg="assets/img/ch-beyond-2432.webp" alt="">
-  <img class="atmos__img " data-for="contact" data-src="assets/img/ch-contact-1280.webp" data-src-lg="assets/img/ch-contact-2432.webp" alt="">
+  <img class="atmos__img" data-for="career" data-src="assets/img/ch-work-1280.webp" data-src-lg="assets/img/ch-work-2432.webp" alt="">
+  <img class="atmos__img" data-for="contact" data-src="assets/img/ch-contact-1280.webp" data-src-lg="assets/img/ch-contact-2432.webp" alt="">
   <img class="atmos__fore" data-src="assets/img/soft-cumulus-1280.webp" data-src-lg="assets/img/soft-cumulus-2560.webp" alt="">
 </div>
 
 <header class="nav" data-nav>
   <a class="nav__mark" href="#top">Dinesh Ravikumar</a>
   <nav class="nav__links" id="nav-links" aria-label="Sections">
-    <a href="#experience">Experience</a>
-    <a href="#journey">Journey</a>
-    <a href="#expertise">Expertise</a>
-    <a href="#work">Work</a>
+    <a href="#career">Career</a>
     <a href="#contact">Contact</a>
   </nav>
   <a class="nav__btn" href="assets/cv/Dinesh_Ravikumar_CV.pdf">Download CV</a>
@@ -54,12 +46,7 @@
   <span class="route__line" aria-hidden="true"><span class="route__explorer"></span></span>
   <ol>
     <li><a href="#top"><span>My universe</span></a></li>
-    <li><a href="#experience"><span>Flight record</span></a></li>
-    <li><a href="#journey"><span>Exploration log</span></a></li>
-    <li><a href="#expertise"><span>Professional galaxies</span></a></li>
-    <li><a href="#work"><span>Mission archive</span></a></li>
-    <li><a href="#skills"><span>Skill constellations</span></a></li>
-    <li><a href="#beyond"><span>Next frontier</span></a></li>
+    <li><a href="#career"><span>Flight record</span></a></li>
     <li><a href="#contact"><span>Open channel</span></a></li>
   </ol>
 </nav>
@@ -70,7 +57,7 @@
     <div class="frag" data-frag data-src="assets/img/hero-astronaut-2560.webp" data-src-sm="assets/img/hero-astronaut-1280.webp" data-fx="0.52" data-fy="0.42" aria-hidden="true"></div>
     <div class="hero__fog" aria-hidden="true"><img src="assets/img/mist-1280.webp" alt="" decoding="async"></div>
     <p class="sr-only">Photograph: an astronaut in a white suit stands on a bright white plain beneath grey clouds.</p>
-    <a class="scrollcue" href="#experience"><span class="scrollcue__mouse" aria-hidden="true"><i></i></span><span class="scrollcue__text">Scroll to explore</span><span class="scrollcue__line" aria-hidden="true"></span></a>
+    <a class="scrollcue" href="#career"><span class="scrollcue__mouse" aria-hidden="true"><i></i></span><span class="scrollcue__text">Scroll to explore</span><span class="scrollcue__line" aria-hidden="true"></span></a>
     <div class="hero__zones">
       <div class="z z--tl">
         <p class="hero-role rv">Product Manager · SaaS Implementation · Business Analyst</p>
@@ -93,7 +80,7 @@
           <dt>Based in</dt><dd>Chennai, India (IST)</dd>
         </dl>
         <div class="cta-row rv" style="--d:500ms">
-          <a class="btn btn--solid" href="#experience">View experience</a>
+          <a class="btn btn--solid" href="#career">View experience</a>
           <a class="btn" href="assets/cv/Dinesh_Ravikumar_CV.pdf">Download CV</a>
           <a class="btn" href="#contact">Contact</a>
         </div>
@@ -109,376 +96,47 @@
     </div>
   </section>
 
-  <!-- 02 · Experience -->
-  <section class="chapter experience" id="experience" data-env="sky" aria-labelledby="experience-title">
-    <div class="wrap8 experience__grid">
-      <div class="head head--sticky">
+  <!-- 02 · Career: roles, AI milestones and mission highlights on one screen -->
+  <section class="chapter career" id="career" data-env="sky" aria-labelledby="career-title">
+    <div class="wrap8 career__grid">
+      <div class="career__col">
         <p class="label eyebrow rv">02 · Flight record</p>
-        <h2 id="experience-title" class="heading-l rv">Experience,<br>role by role.</h2>
-        <p class="caps rv"><b>One organisation, three missions,</b> each wider than the last.</p>
-      </div>
-      <ol class="log" data-log>
-          <li class="mission is-live rv">
-            <p class="label">Jan 2026 to now · Facilio, Chennai</p>
-            <h3>Senior Associate, Implementation &amp; Automation</h3>
-            <p class="mission__status">In progress</p>
-            <p class="ms__intro">AI milestones on this mission</p>
-            <ol class="milestones">
-              <li class="ms rv"><p class="ms__tag">Jan 2026 · Lift-off</p><h4>Role widens to automation</h4><p>From implementation specialist to Senior Associate, Implementation &amp; Automation: rollouts plus AI-assisted delivery tooling.</p></li>
-              <li class="ms rv"><p class="ms__tag">Key achievement · AI delivery workspace</p><h4>A workspace that runs a project end to end</h4><p>Co-built an internal AI-assisted workspace that takes the implementation team from kick-off and requirements to BRD, UAT, go-live and hypercare, with AI drafting BRDs, guides and test cases.</p></li>
-              <li class="ms rv"><p class="ms__tag">Key achievement · AI agent automation</p><h4>Facilio Agent and MCP connectors in delivery</h4><p>AI agent workflows and MCP connectors with Facilio Agent that automate repetitive implementation and deployment work.</p></li>
-              <li class="ms rv"><p class="ms__tag">Ongoing · Reusable skills</p><h4>Repetitive work, built out of the process</h4><p>AI agent workflows and reusable skills that cut repetitive implementation work and speed up delivery.</p></li>
-              <li class="ms rv"><p class="ms__tag">AI toolkit</p><p class="mono">MCP connectors · Facilio Agent · Lovable · Microsoft Copilot</p></li>
-            </ol>
-          </li>
-          <li class="mission rv">
-            <p class="label">Aug 2022 to Dec 2025 · Facilio</p>
-            <h3>Project Implementation Specialist</h3>
-            <p class="mission__status">Complete</p>
-            <ul>
-              <li>Led end-to-end onboarding for enterprise and mid-market clients as primary client-facing lead.</li>
-              <li>Ran discovery workshops; wrote BRDs and functional specifications.</li>
-              <li>Configured service requests, work orders, PPM, contracts, inventory and SLA workflows.</li>
-              <li>Built workflow automation, approval chains, escalations and SLA breach notifications.</li>
-              <li>Managed data onboarding, coordinated UAT end to end (Jira) and defined REST API and webhook integrations.</li>
-              <li>Trained admins and coordinators; wrote playbooks, knowledge-base articles and webinar content.</li>
-            </ul>
-          </li>
-          <li class="mission rv">
-            <p class="label">Jan 2022 to Aug 2022 · Facilio</p>
-            <h3>Account Executive (Internship)</h3>
-            <p class="mission__status">Complete</p>
-            <ul><li>Started in a data-driven building operations internship before moving into full-time implementation.</li></ul>
-          </li>
-        </ol>
-    </div>
-  </section>
-
-  <!-- 03 · Journey -->
-  <section class="chapter journey" id="journey" data-env="sky" aria-labelledby="journey-title">
-    <figure class="band band--rays" aria-hidden="true"></figure>
-    <div class="wrap8 band__over">
-      <p class="label eyebrow rv">03 · Exploration log</p>
-      <h2 id="journey-title" class="heading-l rv">It started on the ground, with how buildings actually run.</h2>
-    </div>
-    <div class="wrap8 journey__grid">
-      <div class="journey__story">
-        <p class="lede rv">I joined Facilio in January 2022 in a data-driven building operations internship and moved into full-time implementation that August.</p>
-        <p class="rv">Since then I have been the person a client works with from the first discovery workshop until the system is live and stable: enterprise and mid-market rollouts, owning scope, timelines, risks and dependencies as the primary client-facing lead.</p>
-        <p class="rv">In January 2026 my role widened to automation. I co-built the AI-assisted workspace our implementation team now uses to run projects, and I build AI agent workflows that take repetitive work out of delivery.</p>
-        <p class="label rv">Delivery at AI speed</p>
-        <p class="rv">I work the way this era allows: fast. The workspace drafts BRDs, user guides and test cases from the project’s own inputs, and AI workflows with MCP connectors and Facilio Agent automate implementation and deployment steps. That frees my time for discovery, judgement and sign-off, the parts a client actually needs a person for.</p>
-        <p class="mono rv">Facilio Agent · MCP connectors · AI agent workflows &amp; reusable skills · Microsoft Copilot · Lovable</p>
-      </div>
-      <div class="journey__approach">
-        <p class="label rv">How I solve problems</p>
-        <ol class="principles">
-          <li class="rv"><h3>Requirements first</h3><p>Discovery workshops and BRDs turn how a client operates into something the platform can be configured against.</p></li>
-          <li class="rv"><h3>Design before configuration</h3><p>Modules, workflows, roles and integrations are designed, and their risks named, before anything is built.</p></li>
-          <li class="rv"><h3>Test against what was asked</h3><p>UAT closes the loop: scenarios trace back to requirements, defects are triaged, sign-off is formal.</p></li>
-          <li class="rv"><h3>Stay through hypercare</h3><p>A go-live is a sign-off, not a date. Issues after launch are root-caused and fed back to product.</p></li>
-          <li class="rv"><h3>Fast, and accountable</h3><p>AI drafts and automates; I check every output against what the client asked for before it reaches them. The speed comes from the tools. The responsibility stays with me.</p></li>
+        <h2 id="career-title" class="heading-l rv">Four years in delivery. Now moving at AI speed.</h2>
+        <p class="caps rv"><b>AI drafts and automates;</b> I check every output against what the client asked for. The speed comes from the tools. The responsibility stays with me.</p>
+        <ol class="roles">
+          <li class="roles__item is-live rv"><p class="roles__when">Jan 2026 to now</p><h3>Senior Associate, Implementation &amp; Automation</h3><p>Rollouts plus AI-assisted delivery tooling.</p></li>
+          <li class="roles__item rv"><p class="roles__when">Aug 2022 to Dec 2025</p><h3>Project Implementation Specialist</h3><p>Enterprise and mid-market rollouts as primary client-facing lead.</p></li>
+          <li class="roles__item rv"><p class="roles__when">Jan to Aug 2022</p><h3>Account Executive (Internship)</h3><p>Data-driven building operations, then into implementation.</p></li>
         </ol>
       </div>
-    </div>
-  </section>
-
-  <!-- 03 · Professional galaxies -->
-  <section class="chapter expertise" id="expertise" data-env="sky" aria-labelledby="expertise-title">
-    <div class="wrap8">
-      <div class="head">
-        <p class="label eyebrow rv">04 · Professional galaxies</p>
-        <h2 id="expertise-title" class="heading-l rv">Seven domains,<br>each charted in real projects.</h2>
-        <p class="serif rv" style="--d:120ms">Every area here comes from work I have done, not plans.</p>
-      </div>
-      <ol class="domains">
-        <li class="domain rv" id="g-01">
-          <svg class="glyph" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="9" pathLength="1"/><ellipse cx="32" cy="32" rx="24" ry="8" transform="rotate(-18 32 32)" pathLength="1"/></svg>
-          <p class="label">G-01</p>
-          <h3>SaaS implementation &amp; delivery</h3>
-          <p class="domain__line">Discovery to go-live and hypercare, as primary client lead.</p>
-          <div class="domain__body"><p>Enterprise and mid-market onboarding programmes on Facilio, owning scope, timelines, risks and dependencies end to end.</p><p class="meta">Related work: <a href="#work-rollout">Multi-module CAFM rollout</a> · <a href="#work-workspace">AI delivery workspace</a></p></div>
-        </li>
-        <li class="domain rv" id="g-02">
-          <svg class="glyph" viewBox="0 0 64 64" aria-hidden="true"><path d="M32 32c4-2 6 2 3 5-5 4-12 0-11-6 1-9 14-11 20-4 8 9 0 22-12 21-15-1-21-17-14-28" pathLength="1"/></svg>
-          <p class="label">G-02</p>
-          <h3>Business analysis &amp; requirements</h3>
-          <p class="domain__line">Workshops and process mapping that surface what clients really need.</p>
-          <div class="domain__body"><p>Business discovery sessions and stakeholder workshops, with processes mapped in Miro so everyone agrees before anything is built.</p><p class="meta">Related work: <a href="#work-rollout">Multi-module CAFM rollout</a></p></div>
-        </li>
-        <li class="domain rv" id="g-03">
-          <svg class="glyph" viewBox="0 0 64 64" aria-hidden="true"><circle cx="14" cy="46" r="2.5" pathLength="1"/><circle cx="32" cy="16" r="2.5" pathLength="1"/><circle cx="50" cy="44" r="2.5" pathLength="1"/><path d="M15.5 44 30.5 18M33.5 18 48.5 42M16.5 46 47.5 44" pathLength="1"/></svg>
-          <p class="label">G-03</p>
-          <h3>Solution architecture &amp; functional design</h3>
-          <p class="domain__line">BRDs, functional specifications and FTR documents.</p>
-          <div class="domain__body"><p>Business Requirement Documents and functional specifications that solution design and configuration can be checked against. FTR documents are prepared alongside them.</p><p class="meta">Related work: <a href="#work-sla">SLA &amp; escalation automation</a></p></div>
-        </li>
-        <li class="domain rv" id="g-04">
-          <svg class="glyph" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="6" pathLength="1"/><circle cx="32" cy="32" r="15" pathLength="1"/><circle cx="32" cy="32" r="25" pathLength="1"/><circle cx="47" cy="32" r="2" pathLength="1"/><circle cx="14" cy="18" r="2" pathLength="1"/></svg>
-          <p class="label">G-04</p>
-          <h3>Enterprise workflows &amp; automation</h3>
-          <p class="domain__line">Rules, approvals, escalations and SLA breach notifications.</p>
-          <div class="domain__body"><p>Workflow automation, approval chains and escalation protocols, configured so operations meet contractual SLAs and their KPIs. Low-code where it fits, scripting where it doesn’t.</p><p class="meta">Related work: <a href="#work-sla">SLA &amp; escalation automation</a></p></div>
-        </li>
-        <li class="domain rv" id="g-05">
-          <svg class="glyph" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="20" pathLength="1"/><ellipse cx="32" cy="32" rx="20" ry="7" pathLength="1"/><ellipse cx="32" cy="32" rx="8" ry="20" pathLength="1"/></svg>
-          <p class="label">G-05</p>
-          <h3>Asset &amp; facility management systems</h3>
-          <p class="domain__line">CAFM/IWMS: work orders, PPM, inspections, inventory.</p>
-          <div class="domain__body"><p>Service Requests, Work Orders, Preventive Maintenance, Inspections, Contracts and Inventory, plus CMDB and asset management practice.</p><p class="meta">Related work: <a href="#work-rollout">Multi-module CAFM rollout</a> · <a href="#work-data">Data onboarding &amp; migration</a></p></div>
-        </li>
-        <li class="domain rv" id="g-06">
-          <svg class="glyph" viewBox="0 0 64 64" aria-hidden="true"><circle cx="18" cy="32" r="7" pathLength="1"/><circle cx="46" cy="32" r="7" pathLength="1"/><path d="M25 32h14" pathLength="1"/></svg>
-          <p class="label">G-06</p>
-          <h3>Integrations &amp; technical problem-solving</h3>
-          <p class="domain__line">REST APIs, webhooks, JavaScript scripting, root-cause analysis.</p>
-          <div class="domain__body"><p>Integration requirements and data flows defined, webhooks configured, endpoints and payloads debugged in Postman with engineering.</p><p class="meta">Related work: <a href="#work-data">Data onboarding &amp; migration</a> · <a href="#work-agents">AI agent workflows</a></p></div>
-        </li>
-        <li class="domain rv" id="g-07">
-          <svg class="glyph" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="5" pathLength="1"/><path d="M32 8v14M32 42v14M8 32h14M42 32h14M15 15l9 9M40 40l9 9M49 15l-9 9M24 40l-9 9" pathLength="1"/></svg>
-          <p class="label">G-07</p>
-          <h3>AI-assisted development &amp; experimentation</h3>
-          <p class="domain__line">Since 2026: AI delivery workspace, agent workflows, MCP connectors.</p>
-          <div class="domain__body"><p>An AI-assisted delivery workspace, AI agent workflows and reusable skills, and MCP connectors with Facilio Agent. Tools include Lovable and Microsoft Copilot.</p><p class="meta">Related work: <a href="#work-workspace">AI delivery workspace</a> · <a href="#work-agents">AI agent workflows</a></p></div>
-        </li>
-      </ol>
-    </div>
-  </section>
-
-  <!-- 04 · Project missions -->
-  <section class="chapter work" id="work" data-env="sky" aria-labelledby="work-title">
-    <div class="wrap8 work__intro">
-      <figure class="work__art rv"><img src="assets/img/orb-astronaut-1280.webp" srcset="assets/img/orb-astronaut-1280.webp 1280w, assets/img/orb-astronaut-2560.webp 2560w" sizes="(max-width: 900px) 100vw, 40vw" alt="An astronaut in white mist holds a glass sphere reflecting the sky." width="1280" height="1920" loading="lazy" decoding="async"></figure>
-      <div class="work__text">
-        <p class="label eyebrow rv">05 · Mission archive</p>
-        <h2 id="work-title" class="heading-l rv">Selected projects,<br>one planet each.</h2>
-        <p class="caps rv"><b>Client names stay confidential.</b> Figures appear only where they are verified; <b>everything else is marked</b> for me to complete.</p>
-        <ol class="work__index rv">
-          <li><a href="#work-workspace">AI-assisted delivery workspace</a></li>
-          <li><a href="#work-agents">AI agent workflows &amp; MCP connectors</a></li>
-          <li><a href="#work-rollout">Multi-module CAFM rollout</a></li>
-          <li><a href="#work-sla">SLA &amp; escalation automation</a></li>
-          <li><a href="#work-data">Data onboarding &amp; migration</a></li>
+      <div class="career__col">
+        <p class="ms__intro rv">AI milestones</p>
+        <ol class="milestones">
+          <li class="ms rv"><p class="ms__tag">Jan 2026 · Lift-off</p><h4>Role widens to automation</h4></li>
+          <li class="ms rv"><p class="ms__tag">Key achievement</p><h4>AI delivery workspace</h4><p>Takes the team from kick-off to hypercare, with AI drafting BRDs, guides and test cases.</p></li>
+          <li class="ms rv"><p class="ms__tag">Key achievement</p><h4>AI agent automation</h4><p>Agent workflows and MCP connectors with Facilio Agent automate repetitive implementation and deployment work.</p></li>
+          <li class="ms rv"><p class="ms__tag">Ongoing</p><h4>Reusable AI skills</h4><p>Cut repetitive work and speed up delivery.</p></li>
         </ol>
+        <p class="mono career__kit rv">MCP connectors · Facilio Agent · Lovable · Microsoft Copilot</p>
       </div>
-    </div>
-    <div class="wrap8 cases">
-      <article class="case" id="work-workspace">
-        <figure class="case__fig">
-          <svg viewBox="0 0 480 360" role="img" aria-label="Diagram: six project stages in sequence, with AI drafting attached to requirements, BRD and UAT">
-            <path class="d-rule" d="M40 210 H440" stroke-dasharray="2 6"/>
-            <g class="d-node"><circle cx="48" cy="210" r="9"/><circle cx="125" cy="210" r="9"/><circle cx="202" cy="210" r="9"/><circle cx="279" cy="210" r="9"/><circle cx="356" cy="210" r="9"/><circle class="d-accent-fill" cx="432" cy="210" r="9"/></g>
-            <path class="d-accent" d="M125 200 C125 150 240 140 240 128 M202 200 C202 160 240 140 240 128 M279 200 C279 160 240 140 240 128"/>
-            <g class="d-text"><text x="48" y="246">Kick-off</text><text x="125" y="246">Reqs</text><text x="202" y="246">BRD</text><text x="279" y="246">UAT</text><text x="356" y="246">Go-live</text><text x="432" y="246">Care</text><text class="d-accent-text" x="240" y="112">AI drafting</text></g>
-          </svg>
-          <figcaption>Diagram · screenshots pending approval</figcaption>
-        </figure>
-        <div class="case__body">
-          <p class="planet-tag"><span class="ring" aria-hidden="true"></span>Planet · <a href="#g-07">Galaxy G-07 · AI-assisted development</a> · <span class="status">In progress</span></p>
-          <p class="label">Mission 01 · 2026 · Co-builder · Internal tool</p>
-          <h3 class="case__title">An AI-assisted workspace that runs a customer project end to end</h3>
-          <p class="case__outcome">Cuts repetitive documentation work for the implementation team.</p>
-          <dl class="case__facts">
-            <dt>Context</dt><dd>Every Facilio implementation moves through the same stages (kick-off, requirements, BRD, UAT, go-live, hypercare), and each stage produces documents.</dd>
-            <dt>Problem</dt><dd>Drafting BRDs, user guides and test cases by hand takes consultants away from clients.</dd>
-            <dt>My role</dt><dd>Co-builder.</dd>
-            <dt>Approach</dt><dd>One workspace that guides the team through every stage, with AI drafting of BRDs, guides and test cases where documents are produced.</dd>
-            <dt>Outcome</dt><dd>Less repetitive documentation for team members (from my CV).</dd>
-          </dl>
-        </div>
-      </article>
-
-      <article class="case" id="work-agents">
-        <figure class="case__fig">
-          <svg viewBox="0 0 480 360" role="img" aria-label="Diagram: a request flows to an AI agent, through MCP connectors to the platform, and returns as completed work">
-            <g class="d-box"><rect x="30" y="160" width="86" height="40" rx="3"/><rect x="160" y="160" width="86" height="40" rx="3"/><rect x="280" y="100" width="108" height="40" rx="3"/><rect x="280" y="220" width="108" height="40" rx="3"/><rect class="d-accent-fill-soft" x="400" y="160" width="60" height="40" rx="3"/></g>
-            <path class="d-rule" d="M116 180 H160 M246 180 C264 180 264 120 280 120 M246 180 C264 180 264 240 280 240 M388 120 C396 120 396 180 400 180 M388 240 C396 240 396 180 400 180"/>
-            <g class="d-text"><text x="73" y="185">Request</text><text x="203" y="185">AI agent</text><text x="334" y="125">MCP</text><text x="334" y="245">Facilio Agent</text><text x="430" y="185">Done</text><text class="d-accent-text" x="203" y="140">reusable skills</text></g>
-          </svg>
-          <figcaption>Diagram · simplified</figcaption>
-        </figure>
-        <div class="case__body">
-          <p class="planet-tag"><span class="ring" aria-hidden="true"></span>Planet · <a href="#g-07">Galaxy G-07 · AI-assisted development</a> · <span class="status">In progress</span></p>
-          <p class="label">Mission 02 · 2026 · Builder</p>
-          <h3 class="case__title">AI agent workflows and MCP connectors with Facilio Agent</h3>
-          <p class="case__outcome">Automating the repetitive steps of implementation and deployment.</p>
-          <dl class="case__facts">
-            <dt>Context</dt><dd>Implementation and deployment involve steps that repeat across every project.</dd>
-            <dt>Problem</dt><dd>Repetitive manual work slows delivery and adds risk.</dd>
-            <dt>My role</dt><dd>Build AI agent workflows and reusable skills; use MCP connectors with Facilio Agent.</dd>
-            <dt>Approach</dt><dd>AI-powered workflows that automate implementation and deployment activities.</dd>
-            <dt>Outcome</dt><dd>Faster delivery with less repetitive work (from my CV).</dd>
-          </dl>
-        </div>
-      </article>
-
-      <article class="case" id="work-rollout">
-        <figure class="case__fig">
-          <svg viewBox="0 0 480 360" role="img" aria-label="Diagram: a building plan with assets mapped to maintenance modules (illustrative, not client data)">
-            <rect class="d-rule" x="60" y="60" width="360" height="230"/>
-            <path class="d-rule" d="M60 160 H240 V60 M240 160 V290 M240 215 H420"/>
-            <g class="d-accent-fill"><circle cx="130" cy="105" r="5"/><circle cx="330" cy="115" r="5"/><circle cx="150" cy="235" r="5"/><circle cx="340" cy="255" r="5"/></g>
-            <g class="d-text d-text--left"><text x="142" y="109">AHU · PPM</text><text x="342" y="119">Lift · WO</text><text x="162" y="239">Fire panel · Inspection</text><text x="352" y="259">Pump · SR</text></g>
-          </svg>
-          <figcaption>Illustrative · not client data</figcaption>
-        </figure>
-        <div class="case__body">
-          <p class="planet-tag"><span class="ring" aria-hidden="true"></span>Planet · <a href="#g-05">Galaxy G-05 · Asset &amp; facility management</a> · <span class="status">Complete</span></p>
-          <p class="label">Mission 03 · Implementation lead</p>
-          <h3 class="case__title">A multi-module CAFM rollout, discovery to hypercare</h3>
-          <dl class="case__facts">
-            <dt>My role</dt><dd>Primary client-facing lead: discovery workshops, BRD, configuration, UAT, training and go-live.</dd>
-            <dt>Approach</dt><dd>Requirements first, then a solution design the configuration could be checked against. Modules: Service Requests, Work Orders, PPM, Contracts, Inventory and SLA workflows.</dd>
-          </dl>
-        </div>
-      </article>
-
-      <article class="case" id="work-sla">
-        <figure class="case__fig">
-          <svg viewBox="0 0 480 360" role="img" aria-label="Diagram: an SLA timeline with response and resolution targets and two escalation levels">
-            <path class="d-rule" d="M50 270 H430 M50 264 V276 M180 260 V280 M310 260 V280"/>
-            <path class="d-accent" d="M50 270 L180 220 L310 170 L400 130"/>
-            <g class="d-accent-fill"><circle cx="180" cy="220" r="5"/><circle cx="310" cy="170" r="5"/><circle cx="400" cy="130" r="6"/></g>
-            <g class="d-text"><text x="180" y="302">Response</text><text x="310" y="302">Resolution</text><text x="196" y="214">L1</text><text x="326" y="164">L2</text><text class="d-accent-text" x="400" y="112">Breach notice</text></g>
-          </svg>
-          <figcaption>Illustrative · not client data</figcaption>
-        </figure>
-        <div class="case__body">
-          <p class="planet-tag"><span class="ring" aria-hidden="true"></span>Planet · <a href="#g-04">Galaxy G-04 · Enterprise workflows &amp; automation</a> · <span class="status">Complete</span></p>
-          <p class="label">Mission 04 · Solution design &amp; configuration</p>
-          <h3 class="case__title">SLA, escalation and breach rules built to a contract</h3>
-          <dl class="case__facts">
-            <dt>Problem</dt><dd>Contractual SLAs and operational KPIs had to be enforced by the system, not by people watching queues.</dd>
-            <dt>My role</dt><dd>Defined SLA configurations, approval chains, escalation protocols and breach notifications.</dd>
-            <dt>Approach</dt><dd>Workflow automation and business rules, designed with the client’s service operations team.</dd>
-          </dl>
-        </div>
-      </article>
-
-      <article class="case" id="work-data">
-        <figure class="case__fig">
-          <svg viewBox="0 0 480 360" role="img" aria-label="Diagram: legacy data moving through mapping, cleansing and validation before loading">
-            <g class="d-box"><rect x="24" y="160" width="72" height="40" rx="3"/><rect x="124" y="160" width="72" height="40" rx="3"/><rect x="224" y="160" width="72" height="40" rx="3"/><rect x="324" y="160" width="72" height="40" rx="3"/><rect class="d-accent-fill-soft" x="414" y="160" width="48" height="40" rx="3"/></g>
-            <path class="d-rule" d="M96 180 H124 M196 180 H224 M296 180 H324 M396 180 H414"/>
-            <g class="d-text"><text x="60" y="185">Legacy</text><text x="160" y="185">Map</text><text x="260" y="185">Cleanse</text><text x="360" y="185">Validate</text><text x="438" y="185">Load</text><text class="d-accent-text" x="260" y="140">integrity gates go-live</text></g>
-          </svg>
-          <figcaption>Diagram · simplified</figcaption>
-        </figure>
-        <div class="case__body">
-          <p class="planet-tag"><span class="ring" aria-hidden="true"></span>Planet · <a href="#g-06">Galaxy G-06 · Integrations &amp; problem-solving</a> · <span class="status">Complete</span></p>
-          <p class="label">Mission 05 · Data onboarding lead</p>
-          <h3 class="case__title">Data onboarding and migration with integrity at go-live</h3>
-          <dl class="case__facts">
-            <dt>Problem</dt><dd>Legacy asset and operational data had to arrive clean, mapped and complete before go-live.</dd>
-            <dt>My role</dt><dd>Managed the lifecycle: mapping, validation, cleansing, transformation and migration.</dd>
-            <dt>Approach</dt><dd>Mapping first, validation before load, integrity checks as a go-live gate.</dd>
-          </dl>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <!-- 05 · Skills -->
-  <section class="chapter skills" id="skills" data-env="sky" aria-labelledby="skills-title">
-    <div class="wrap8">
-      <div class="head">
-        <p class="label eyebrow rv">06 · Skill constellations</p>
-        <h2 id="skills-title" class="heading-l rv">Skills are not bars.<br>They are constellations.</h2>
-        <p class="caps rv"><b>Each skill only makes sense next to the others.</b> Select a star to see what it connects to.</p>
-      </div>
-      <div class="sky-wrap rv">
-        <svg class="sky" viewBox="0 0 1000 600" role="group" aria-label="Skill constellations" data-sky>
-          <g class="lines">
-            <path class="c-line" d="M120 110 L230 72 L300 150 L210 214 L90 200 Z"/>
-            <path class="c-line" d="M640 92 L760 62 L860 132 L800 222 L680 202 Z"/>
-            <path class="c-line" d="M110 402 L230 362 L300 452 L200 522 L90 500"/>
-            <path class="c-line" d="M640 402 L760 362 L860 442 L750 512 L640 522"/>
-          </g>
-          <g>
-            <path class="b-line" data-a="design" data-b="config" d="M210 214 L680 202"/>
-            <path class="b-line" data-a="reqs" data-b="uat" d="M120 110 C40 250 160 300 230 362"/>
-            <path class="b-line" data-a="auto" data-b="sla" d="M760 62 C920 200 880 300 760 362"/>
-            <path class="b-line" data-a="migrate" data-b="golive" d="M680 202 C520 360 320 470 200 522"/>
-            <path class="b-line" data-a="hyper" data-b="rca" d="M90 500 C300 600 560 560 750 512"/>
-            <path class="b-line" data-a="stake" data-b="workshops" d="M110 402 L90 200"/>
-            <path class="b-line" data-a="north" data-b="design" d="M500 300 L210 214"/>
-            <path class="b-line" data-a="north" data-b="rca" d="M500 300 L750 512"/>
-            <path class="b-line" data-a="north" data-b="api" d="M500 300 L800 222"/>
-            <path class="b-line" data-a="north" data-b="uat" d="M500 300 L230 362"/>
-          </g>
-          <text class="c-name" x="160" y="40">The Analyst</text>
-          <text class="c-name" x="700" y="30">The Builder</text>
-          <text class="c-name" x="150" y="590">The Deliverer</text>
-          <text class="c-name" x="690" y="590">The Operator</text>
-          <g class="star" data-id="reqs" tabindex="0" role="button" aria-label="Requirements gathering" data-note="Requirements gathering: <b>everything downstream is tested against it</b>, including UAT." transform="translate(120 110)"><circle class="halo" r="14"/><circle r="4"/><text x="12" y="-10">Requirements</text></g>
-          <g class="star" data-id="brd" tabindex="0" role="button" aria-label="BRDs and functional specs" data-note="BRDs and functional specs: <b>the contract between the client’s reality and the configuration</b>." transform="translate(230 72)"><circle class="halo" r="14"/><circle r="3.5"/><text x="12" y="-8">BRDs &amp; specs</text></g>
-          <g class="star" data-id="map" tabindex="0" role="button" aria-label="Process mapping" data-note="Process mapping in Miro: <b>workshops made visible</b>, so stakeholders agree before anything is built." transform="translate(300 150)"><circle class="halo" r="14"/><circle r="3"/><text x="12" y="5">Process mapping</text></g>
-          <g class="star" data-id="design" tabindex="0" role="button" aria-label="Solution design" data-note="Solution design: <b>the bridge from analysis to build</b>. It drives configuration directly." transform="translate(210 214)"><circle class="halo" r="14"/><circle r="4.5"/><text x="12" y="20">Solution design</text></g>
-          <g class="star" data-id="workshops" tabindex="0" role="button" aria-label="Discovery workshops" data-note="Discovery workshops: <b>the first conversation</b>, held with the same stakeholders I later take to go-live." transform="translate(90 200)"><circle class="halo" r="14"/><circle r="3.5"/><text x="-12" y="24" text-anchor="end">Workshops</text></g>
-          <g class="star" data-id="config" tabindex="0" role="button" aria-label="Platform configuration" data-note="Configuration: <b>built from the solution design</b>, module by module." transform="translate(640 92)"><circle class="halo" r="14"/><circle r="4.5"/><text x="-12" y="-10" text-anchor="end">Configuration</text></g>
-          <g class="star" data-id="auto" tabindex="0" role="button" aria-label="Workflow automation" data-note="Workflow automation: <b>rules, approvals and escalations</b> that enforce the SLAs." transform="translate(760 62)"><circle class="halo" r="14"/><circle r="4"/><text x="12" y="-8">Workflow automation</text></g>
-          <g class="star" data-id="script" tabindex="0" role="button" aria-label="JavaScript scripting" data-note="Platform scripting in JavaScript: <b>where configuration runs out</b>, custom logic takes over." transform="translate(860 132)"><circle class="halo" r="14"/><circle r="3"/><text x="12" y="5">JS scripting</text></g>
-          <g class="star" data-id="api" tabindex="0" role="button" aria-label="REST APIs and webhooks" data-note="REST APIs and webhooks: <b>connecting the platform to the client’s other systems</b>, debugged in Postman." transform="translate(800 222)"><circle class="halo" r="14"/><circle r="4"/><text x="12" y="22">REST &amp; webhooks</text></g>
-          <g class="star" data-id="migrate" tabindex="0" role="button" aria-label="Data migration" data-note="Data migration: <b>clean data gates go-live</b>. Mapping, cleansing and validation come first." transform="translate(680 202)"><circle class="halo" r="14"/><circle r="3.5"/><text x="-12" y="22" text-anchor="end">Data migration</text></g>
-          <g class="star" data-id="stake" tabindex="0" role="button" aria-label="Stakeholder management" data-note="Stakeholder management: <b>the same people from the first workshop to hypercare</b>." transform="translate(110 402)"><circle class="halo" r="14"/><circle r="4"/><text x="-12" y="-10" text-anchor="end">Stakeholders</text></g>
-          <g class="star" data-id="uat" tabindex="0" role="button" aria-label="User acceptance testing" data-note="UAT: <b>closes the loop back to requirements</b>. Scenarios written, defects triaged in Jira, sign-off secured." transform="translate(230 362)"><circle class="halo" r="14"/><circle r="4.5"/><text x="12" y="-10">UAT &amp; sign-off</text></g>
-          <g class="star" data-id="train" tabindex="0" role="button" aria-label="Training" data-note="Training: <b>admin and coordinator workshops</b>, guides and webinar content." transform="translate(300 452)"><circle class="halo" r="14"/><circle r="3"/><text x="12" y="5">Training</text></g>
-          <g class="star" data-id="golive" tabindex="0" role="button" aria-label="Go-live" data-note="Go-live: <b>a sign-off, not a date</b>. It is gated by data, UAT and readiness reviews." transform="translate(200 522)"><circle class="halo" r="14"/><circle r="4"/><text x="12" y="22">Go-live</text></g>
-          <g class="star" data-id="hyper" tabindex="0" role="button" aria-label="Hypercare" data-note="Hypercare: <b>post-launch stability</b>; issues get root-caused and fed back to product." transform="translate(90 500)"><circle class="halo" r="14"/><circle r="3.5"/><text x="-12" y="22" text-anchor="end">Hypercare</text></g>
-          <g class="star" data-id="itil" tabindex="0" role="button" aria-label="ITIL processes" data-note="ITIL: <b>incident, request, problem and change</b>, the language of service operations." transform="translate(640 402)"><circle class="halo" r="14"/><circle r="3.5"/><text x="-12" y="-10" text-anchor="end">ITIL processes</text></g>
-          <g class="star" data-id="sla" tabindex="0" role="button" aria-label="SLA management" data-note="SLA management: <b>defined in design, enforced by automation</b>." transform="translate(760 362)"><circle class="halo" r="14"/><circle r="4.5"/><text x="12" y="-10">SLA management</text></g>
-          <g class="star" data-id="cmdb" tabindex="0" role="button" aria-label="CMDB and asset management" data-note="CMDB and asset management: <b>the master data everything else hangs on</b>." transform="translate(860 442)"><circle class="halo" r="14"/><circle r="3"/><text x="12" y="5">CMDB &amp; assets</text></g>
-          <g class="star" data-id="rca" tabindex="0" role="button" aria-label="Root-cause analysis" data-note="Root-cause analysis: <b>structured problem-solving</b> on live issues, with engineering." transform="translate(750 512)"><circle class="halo" r="14"/><circle r="4"/><text x="12" y="22">Root-cause analysis</text></g>
-          <g class="star" data-id="ad" tabindex="0" role="button" aria-label="Active Directory provisioning" data-note="Identity and access: <b>user provisioning and directory services</b> (Active Directory)." transform="translate(640 522)"><circle class="halo" r="14"/><circle r="3"/><text x="-12" y="22" text-anchor="end">AD provisioning</text></g>
-          <g class="star north" data-id="north" tabindex="0" role="button" aria-label="Problem-solving, the north star" data-note="<b>Problem-solving</b> is the north star: it links design, testing, integrations and root-cause analysis." transform="translate(500 300)"><circle class="halo" r="26"/><circle r="6"/><text y="-22" text-anchor="middle">Problem-solving</text></g>
-        </svg>
-      </div>
-      <p class="sky-caption" aria-live="polite" data-sky-caption>Select a star. Dashed lines are the bridges between constellations.</p>
-      <div class="capgrid">
-        <section class="rv"><h3>Functional &amp; analysis</h3><ul><li>Requirements gathering</li><li>Discovery workshops</li><li>BRDs &amp; functional specifications</li><li>Process mapping</li><li>Solution design</li><li>UAT planning &amp; test scenarios</li></ul></section>
-        <section class="rv" style="--d:60ms"><h3>Platform &amp; technical</h3><ul><li>Multi-module SaaS configuration</li><li>Workflow automation &amp; business rules</li><li>JavaScript platform scripting</li><li>REST APIs &amp; webhooks</li><li>Data migration &amp; validation</li><li>CMDB &amp; asset management</li></ul></section>
-        <section class="rv" style="--d:120ms"><h3>Delivery &amp; leadership</h3><ul><li>End-to-end implementation</li><li>Stakeholder management</li><li>Risk &amp; dependency management</li><li>Go-live &amp; hypercare</li><li>Training &amp; enablement</li><li>Change management</li></ul></section>
-        <section class="rv" style="--d:180ms"><h3>Service management</h3><ul><li>ITIL: incident, request, problem, change</li><li>SLA design &amp; escalation</li><li>Ticketing administration</li><li>Identity &amp; access provisioning</li></ul></section>
-        <section class="rv capgrid__tools" style="--d:240ms"><h3>Tools</h3><p class="mono">Facilio · Jira · Postman · Miro · Notion · MCP connectors · Facilio Agent · Lovable · Microsoft Copilot</p></section>
-      </div>
-    </div>
-  </section>
-
-  <!-- Ascent: sticky stage; after the highest sky chapter, scrolling dives through the light and the atmosphere into the galaxy that Beyond opens on -->
-  <section class="zoomtrip" id="ascent" data-env="space" aria-label="Transition from the sky into space">
-    <div class="zt__stage">
-      <img class="zt__layer" data-i="0" src="assets/img/rays-above-1280.webp" srcset="assets/img/rays-above-1280.webp 1280w, assets/img/rays-above-2560.webp 2560w" sizes="100vw" alt="" decoding="async">
-      <img class="zt__layer" data-i="1" src="assets/img/ch-ascent-end-1280.webp" srcset="assets/img/ch-ascent-end-1280.webp 1280w, assets/img/ch-ascent-end-2432.webp 2432w" sizes="100vw" alt="" decoding="async">
-      <p class="zt__cap" data-i="0">Through the light.</p>
-      <p class="zt__cap" data-i="1">Into the unknown.</p>
-    </div>
-  </section>
-
-  <!-- 07 · Beyond the known universe -->
-  <section class="chapter beyond" id="beyond" data-env="space"aria-labelledby="beyond-title">
-    <figure class="band band--beyond" aria-hidden="true"></figure>
-    <div class="wrap8 band__over">
-      <p class="label label--light eyebrow rv">07 · Next frontier</p>
-      <h2 id="beyond-title" class="display display--sm rv">Curiosity is the part of the mission that never ends.</h2>
-    </div>
-    <div class="wrap8 beyond__grid">
-      <p class="caps rv"><b>What I am learning and testing now,</b> kept apart from proven experience on purpose.</p>
-      <div>
-        <p class="legend__key rv">● proven in my work · ○ exploring, not yet proven</p>
-        <ul class="legend">
-          <li class="rv"><span class="dot dot--proven"></span><div><h3>Agentic AI in delivery</h3><p>Proven since 2026 (AI agent workflows, MCP connectors). Exploring how far agents can take a whole project lifecycle.</p></div></li>
-          <li class="rv"><span class="dot dot--proven"></span><div><h3>Product management</h3><p>Part of my role today, alongside SaaS implementation and business analysis.</p></div></li>
+      <div class="career__col">
+        <p class="ms__intro rv">Mission highlights</p>
+        <ul class="missions">
+          <li class="rv"><h4>Multi-module CAFM rollout</h4><p>Discovery to hypercare as primary client-facing lead: BRD, configuration, UAT, training and go-live.</p></li>
+          <li class="rv"><h4>SLA and escalation rules, built to a contract</h4><p>SLA configurations, approval chains, escalations and breach notifications enforced by the system.</p></li>
+          <li class="rv"><h4>Data onboarding and migration</h4><p>Mapping, validation, cleansing, transformation and migration of legacy data ahead of go-live.</p></li>
         </ul>
+        <a class="link career__cv rv" href="assets/cv/Dinesh_Ravikumar_CV.pdf">Full detail in the CV (PDF) ↓</a>
       </div>
     </div>
   </section>
 
-  <!-- 08 · Contact -->
-  <section class="chapter contact" id="contact" data-env="space"aria-labelledby="contact-title">
+  <!-- 03 · Contact -->
+  <section class="chapter contact" id="contact" data-env="space" aria-labelledby="contact-title">
     <div class="wrap8 contact__grid">
       <div>
         <p class="arrival rv">Journey complete · 2.5 million light-years from base camp</p>
-        <p class="label eyebrow rv">08 · Open channel</p>
+        <p class="label eyebrow rv">03 · Open channel</p>
         <h2 id="contact-title" class="display rv">Open a<br>channel.</h2>
         <p class="intro rv">If you are planning a rollout, untangling one, or thinking about AI in delivery, I would like to hear about it.</p>
       </div>

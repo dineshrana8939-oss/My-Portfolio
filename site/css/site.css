@@ -520,3 +520,30 @@ main { overflow-x: clip; } /* hover glows spill 60px past edge elements; clip (n
 .ms p:not(.ms__tag):not(.mono) { margin: 0; font-size: 14.5px; line-height: 1.55; color: var(--ink-2); }
 .js .ms.rv { transform: translate3d(0, 34px, 0) scale(.965); }
 .js .ms.rv.in { transform: none; }
+
+/* ---------- 02 Career: one screen, three columns (roles · AI milestones · mission highlights) ---------- */
+.career { min-height: 100vh; min-height: 100svh; padding: 132px 0 64px; background: linear-gradient(var(--sky-ground), var(--veil) 34vh, var(--veil)); }
+.career__grid { align-items: start; row-gap: 48px; }
+.career__col { grid-column: span 3; }
+.career__col:first-child { grid-column: 1 / span 3; }
+.career__col:nth-child(2) { grid-column: 4 / span 3; }
+.career__col:nth-child(3) { grid-column: 7 / span 2; }
+.career .heading-l { font-size: clamp(1.9rem, 1rem + 2.1vw, 2.8rem); margin: 6px 0 26px; }
+.career .caps { margin-bottom: 26px; max-width: 40ch; }
+.roles { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.roles__item { padding: 14px 0; border-bottom: 1px solid var(--line); }
+.roles__when { font: 500 10.5px/1.3 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+.roles__item.is-live .roles__when { color: var(--accent); }
+.roles h3 { font-size: 16px; font-weight: 650; font-stretch: 108%; letter-spacing: -.01em; line-height: 1.25; margin: 0 0 4px; }
+.roles p:last-child { margin: 0; font-size: 14px; line-height: 1.5; color: var(--ink-2); }
+.career .ms { margin-bottom: 12px; padding: 12px 14px; }
+.career .ms::before { top: 18px; }
+.career__kit { font-size: 12px; margin-top: 6px; color: var(--ink-2); }
+.missions { list-style: none; margin: 0; padding: 0; }
+.missions li { padding: 14px 0; border-top: 1px solid var(--line); }
+.missions h4 { margin: 0 0 4px; font-size: 15.5px; font-weight: 650; font-stretch: 108%; line-height: 1.25; }
+.missions p { margin: 0; font-size: 14px; line-height: 1.5; color: var(--ink-2); }
+.career__cv { display: inline-block; margin-top: 18px; font-size: 14px; font-weight: 600; }
+@media (max-width: 1100px) { .career__col:first-child { grid-column: 1 / -1; } .career__col:nth-child(2) { grid-column: 1 / span 4; } .career__col:nth-child(3) { grid-column: 5 / span 4; } }
+@media (max-width: 760px) { .career__col:nth-child(n) { grid-column: 1 / -1; } .career { padding-top: 104px; } }
+@media (max-width: 760px) { .hero .z--br { display: none; } } /* phones: the Career screen right after already lists every role */

@@ -7,7 +7,7 @@
   const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
 
   /* ---------- Pull to keep scrolling: each chapter ends on a teaser for the next; headings rise word by word ---------- */
-  const NEXT = { experience: 'How a building-ops intern came to run rollouts', journey: 'Seven domains, each charted in real projects', expertise: 'Lift-off: the missions', work: 'How the skills connect', skills: 'Leaving the atmosphere', beyond: 'One last stop: a channel home' };
+  const NEXT = { career: 'One last stop: a channel home' };
   const stops = $$('.route a').map((a) => ({ id: a.getAttribute('href').slice(1), name: a.textContent.trim() }));
   stops.forEach((s, i) => {
     const sec = document.getElementById(s.id), nx = stops[i + 1];
@@ -154,7 +154,8 @@
   let ticking = false, lastActive = -1;
   const art = $('.work__art img');
   // altitude meter: each chapter top is an anchor; between anchors the value is interpolated in log space, so the dive into space races
-  const ALT = [['top', 0], ['experience', 4800], ['journey', 6400], ['expertise', 9000], ['work', 12000], ['skills', 32000], ['ascent', 50000], ['beyond', 2.365e22]];
+  // [section, value, measure from its 'top' or 'bottom', offset in viewport heights]: the race happens in the hand-off to Contact
+  const ALT = [['top', 0, 'top', 0], ['career', 9000, 'top', 0], ['career', 14000, 'bottom', -0.6], ['contact', 2.365e22, 'top', 0.2]];
   const PLACES = [[0, 'Base camp'], [3000, 'The summit'], [6000, 'Ridge at sunrise'], [8500, 'Above the cloud sea'], [11000, 'Rising'], [20000, 'Stratosphere'], [1e5, 'Edge of space'], [4e5, 'Orbit'], [3.8e8, 'Past the Moon'], [2e11, 'Across the Solar System'], [1.8e13, 'Edge of the Solar System'], [9.46e15, 'Interstellar'], [9.46e19, 'Leaving the galaxy'], [2e22, 'Andromeda']];
   const LY = 9.4607e15;
   const fmt = (v) => v < 1000 ? `${Math.round(v)} m` : v < LY ? `${(v / 1000).toLocaleString('en-US', { maximumFractionDigits: v < 1e4 ? 1 : 0 })} km` : v < LY * 1e6 ? `${Math.round(v / LY).toLocaleString('en-US')} ly` : `${(v / LY / 1e6).toFixed(1)} M ly`;
@@ -234,7 +235,7 @@
   const zt = $('.zoomtrip'), ztL = $$('.zt__layer'), ztC = $$('.zt__cap');
   let geo = null;
   const top = (el) => el.getBoundingClientRect().top + scrollY;
-  function measure() { geo = { alt: ALT.map(([id, v]) => ({ y: document.getElementById(id) ? top(document.getElementById(id)) : 0, v })).sort((a, b) => a.y - b.y), heroT: top(hero), heroH: hero.offsetHeight, ztT: zt ? top(zt) : 0, ztH: zt ? zt.offsetHeight : 1, bands: bands.map((b) => ({ t: top(b.parentElement), h: b.parentElement.offsetHeight })) }; frag.style.setProperty('--ox', `${+frag.dataset.fx * 100}%`); frag.style.setProperty('--oy', `${+frag.dataset.fy * 100}%`); }
+  function measure() { geo = { alt: ALT.map(([id, v, edge, off]) => { const el = document.getElementById(id); return { y: el ? top(el) + (edge === 'bottom' ? el.offsetHeight : 0) + off * innerHeight : 0, v }; }).sort((a, b) => a.y - b.y), heroT: top(hero), heroH: hero.offsetHeight, ztT: zt ? top(zt) : 0, ztH: zt ? zt.offsetHeight : 1, bands: bands.map((b) => ({ t: top(b.parentElement), h: b.parentElement.offsetHeight })) }; frag.style.setProperty('--ox', `${+frag.dataset.fx * 100}%`); frag.style.setProperty('--oy', `${+frag.dataset.fy * 100}%`); }
   const ease = (t) => t * t * (3 - 2 * t);
   function camera(y) {
     if (!geo) measure();
