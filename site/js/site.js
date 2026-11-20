@@ -14,7 +14,7 @@
 
   /* ---------- Hero: the photograph cut into tiles that sit exactly on the page grid's column lines ---------- */
   const hero = $('.hero'), frag = $('[data-frag]');
-  let tiles = [], cols = 8, rows = 5, natural = null, mx = -1e4, my = -1e4;
+  let tiles = [], cols = 8, rows = 5, natural = null;
   const pickSrc = () => (frag.clientWidth * Math.min(2, devicePixelRatio || 1) > 1500 ? frag.dataset.src : frag.dataset.srcSm);
   function layout() {
     if (!natural) return;
@@ -25,6 +25,7 @@
     const s = Math.max(W / natural.w, H / natural.h), bw = natural.w * s, bh = natural.h * s;
     const fx = +frag.dataset.fx, fy = +frag.dataset.fy;
     const ox = clamp(W / 2 - fx * bw, W - bw, 0), oy = clamp(H / 2 - fy * bh, H - bh, 0);
+    if (frag.classList.contains('settled')) { tiles = []; frag.replaceChildren(); Object.assign(frag.style, { backgroundImage: `url("${natural.src}")`, backgroundSize: `${bw}px ${bh}px`, backgroundPosition: `${ox}px ${oy}px`, backgroundRepeat: 'no-repeat' }); return; }
     const need = cols * rows;
     if (tiles.length !== need) {
       frag.replaceChildren(); tiles = [];
@@ -38,29 +39,15 @@
       t.el.style.setProperty('--delay', `${Math.round((Math.hypot(x + w / 2 - fpx, y + h / 2 - fpy) / maxD) * 900)}ms`);
     });
   }
-  function renderTiles(p) {
-    if (reduce || !tiles.length) return;
-    const R = frag.getBoundingClientRect();
-    tiles.forEach((t) => {
-      const dc = t.c - (cols - 1) / 2, dr = t.r - (rows - 1) / 2;
-      let lift = 0;
-      if (fine && mx > -1e3) { const d = Math.hypot(R.left + t.x + t.w / 2 - mx, R.top + t.y + t.h / 2 - my); lift = Math.max(0, 1 - d / 220) * -7; }
-      t.el.style.transform = (p > 0.001 || lift) ? `translate3d(${(dc * p * 14).toFixed(1)}px, ${(dr * p * 22 + lift).toFixed(1)}px, 0)` : '';
-    });
-  }
   const img = new Image();
   img.decoding = 'async';
   img.onload = () => {
     natural = { w: img.naturalWidth, h: img.naturalHeight, src: img.src };
     layout();
     requestAnimationFrame(() => requestAnimationFrame(() => frag.classList.add('is-in')));
-    setTimeout(() => frag.classList.add('settled'), 2600); // after assembly, tiles follow scroll and pointer without lag
+    setTimeout(() => { frag.classList.add('settled'); layout(); }, 2600); // after assembly: one seamless image
   };
   img.src = pickSrc();
-  if (fine && !reduce) {
-    hero.addEventListener('pointermove', (e) => { mx = e.clientX; my = e.clientY; tick(); });
-    hero.addEventListener('pointerleave', () => { mx = my = -1e4; tick(); });
-  }
 
   /* ---------- Navigation: follows the environment beneath it ---------- */
   const nav = $('[data-nav]'), bar = $('[data-progress]'), menu = $('[data-menu]');
@@ -102,7 +89,7 @@
   }));
 
   /* ---------- One frame: read all rects, then write ---------- */
-  let ticking = false, lastActive = -1;
+  let ticking = false, lastActive = -1, lastOn = 0;
   function frame() {
     ticking = false;
     const vh = innerHeight, y = scrollY, docH = document.documentElement.scrollHeight;
@@ -121,6 +108,8 @@
     nav.classList.toggle('is-solid', y > heroR.height - navH);
     bar.style.setProperty('--p', clamp(y / (docH - vh)).toFixed(4));
     if (route) {
+      const mid = envs[eR.findIndex((r) => r.top <= vh / 2 && r.bottom > vh / 2)];
+      if (mid) route.setAttribute('data-env', mid.dataset.env);
       route.style.setProperty('--rp', clamp(y / (docH - vh)).toFixed(4));
       let st = 0; rSecs.forEach((s, i) => { if (s.getBoundingClientRect().top <= vh * 0.4) st = i; });
       if (st !== lastStop) { lastStop = st; rLinks.forEach((l, i) => (i === st ? l.setAttribute('aria-current', 'true') : l.removeAttribute('aria-current'))); }
@@ -128,26 +117,25 @@
     let a = -1; tR.forEach((r, i) => { if (r.top <= vh * 0.35) a = i; });
     if (a !== lastActive) { lastActive = a; links.forEach((l, i) => (i === a ? l.setAttribute('aria-current', 'true') : l.removeAttribute('aria-current'))); }
 
-    const hp = clamp(-heroR.top / Math.max(1, heroR.height));
-    renderTiles(hp);
     if (!reduce) {
       bR.forEach((r, i) => { if (r.bottom > 0 && r.top < vh) bands[i].style.setProperty('--par', `${((r.top + r.height / 2 - vh / 2) / vh * -60).toFixed(1)}px`); });
       if (mR && mR.bottom > 0 && mR.top < vh) mist.style.setProperty('--mp', clamp((vh - mR.top) / (vh + mR.height)).toFixed(3));
     }
     let on = -1; aR.forEach((r, i) => { if (r.top < vh * 0.6 && r.bottom > vh * 0.4) on = i; });
+    if (on < 0) on = lastOn; else lastOn = on;
     aR.forEach((r, i) => { if (r.top < vh * 2 && r.bottom > -vh) load(aImgs[i]); });
     aImgs.forEach((im, i) => {
       im.classList.toggle('is-on', i === on);
-      if (i === on && !reduce) im.style.setProperty('--cam', clamp((vh - aR[i].top) / (vh + aR[i].height)).toFixed(3));
     });
     atmos.classList.toggle('is-space', on > -1 && aSecs[on].dataset.env === 'space');
     cases.forEach((c, i) => c.style.setProperty('--draw', reduce ? 1 : clamp((vh * 0.85 - cR[i].top) / (vh * 0.6)).toFixed(3)));
     if (sR) skyEl.style.setProperty('--sky-p', reduce ? 1 : clamp((vh - sR.top) / (vh * 0.9)).toFixed(3));
     if (lR) log.style.setProperty('--log-p', clamp((vh * 0.55 - lR.top) / lR.height).toFixed(3));
+    camera(y);
   }
-  /* ---------- Scroll camera: a lerped playhead (scroll-craft: ~0.18/frame) drives every camera move ---------- */
+  /* ---------- Scroll camera: driven directly by scroll position, so visuals never trail the scrollbar ---------- */
   const zt = $('.zoomtrip'), ztL = $$('.zt__layer'), ztC = $$('.zt__cap');
-  let geo = null, sy = scrollY, camOn = false;
+  let geo = null;
   const top = (el) => el.getBoundingClientRect().top + scrollY;
   function measure() { geo = { heroT: top(hero), heroH: hero.offsetHeight, ztT: zt ? top(zt) : 0, ztH: zt ? zt.offsetHeight : 1, bands: bands.map((b) => ({ t: top(b.parentElement), h: b.parentElement.offsetHeight })) }; frag.style.setProperty('--ox', `${+frag.dataset.fx * 100}%`); frag.style.setProperty('--oy', `${+frag.dataset.fy * 100}%`); }
   const ease = (t) => t * t * (3 - 2 * t);
@@ -169,16 +157,9 @@
       });
     }
   }
-  function camLoop() {
-    sy += (scrollY - sy) * (reduce ? 1 : 0.18);
-    if (Math.abs(scrollY - sy) < 0.5) sy = scrollY;
-    camera(sy);
-    if (sy !== scrollY) requestAnimationFrame(camLoop); else camOn = false;
-  }
-  const kickCam = () => { if (!camOn) { camOn = true; requestAnimationFrame(camLoop); } };
-  function tick() { kickCam(); if (!ticking) { ticking = true; requestAnimationFrame(frame); } }
+  function tick() { if (!ticking) { ticking = true; requestAnimationFrame(frame); } }
   addEventListener('scroll', tick, { passive: true });
   let rz; addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(() => { layout(); measure(); tick(); }, 150); });
   addEventListener('load', () => { measure(); tick(); });
-  frame(); camera(scrollY);
+  frame();
 })();
