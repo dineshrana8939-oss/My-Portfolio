@@ -46,6 +46,7 @@
     layout();
     requestAnimationFrame(() => requestAnimationFrame(() => frag.classList.add('is-in')));
     setTimeout(() => { frag.classList.add('settled'); layout(); }, 2600); // after assembly: one seamless image
+    document.fonts && document.fonts.ready.then(() => { layout(); measure(); }); // hero height follows its text once fonts load
   };
   img.src = pickSrc();
 
