@@ -65,6 +65,8 @@
   /* ---------- Navigation: follows the environment beneath it ---------- */
   const nav = $('[data-nav]'), bar = $('[data-progress]'), menu = $('[data-menu]');
   const links = $$('.nav__links a'), targets = links.map((a) => $(a.getAttribute('href')));
+  const route = $('[data-route]'), rLinks = $$('.route a'), rSecs = rLinks.map((a) => $(a.getAttribute('href')));
+  let lastStop = -1;
   const envs = $$('[data-env]').filter((el) => el.tagName === 'SECTION');
   menu.addEventListener('click', () => { const o = !nav.classList.contains('is-open'); nav.classList.toggle('is-open', o); menu.setAttribute('aria-expanded', String(o)); });
   links.forEach((a) => a.addEventListener('click', () => { nav.classList.remove('is-open'); menu.setAttribute('aria-expanded', 'false'); }));
@@ -118,6 +120,11 @@
     nav.classList.toggle('on-photo', under === hero && innerWidth > 760);
     nav.classList.toggle('is-solid', y > heroR.height - navH);
     bar.style.setProperty('--p', clamp(y / (docH - vh)).toFixed(4));
+    if (route) {
+      route.style.setProperty('--rp', clamp(y / (docH - vh)).toFixed(4));
+      let st = 0; rSecs.forEach((s, i) => { if (s.getBoundingClientRect().top <= vh * 0.4) st = i; });
+      if (st !== lastStop) { lastStop = st; rLinks.forEach((l, i) => (i === st ? l.setAttribute('aria-current', 'true') : l.removeAttribute('aria-current'))); }
+    }
     let a = -1; tR.forEach((r, i) => { if (r.top <= vh * 0.35) a = i; });
     if (a !== lastActive) { lastActive = a; links.forEach((l, i) => (i === a ? l.setAttribute('aria-current', 'true') : l.removeAttribute('aria-current'))); }
 

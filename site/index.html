@@ -43,6 +43,19 @@
   <span class="nav__progress" aria-hidden="true"><i data-progress></i></span>
 </header>
 
+<nav class="route" aria-label="Exploration route" data-route>
+  <span class="route__line" aria-hidden="true"><span class="route__explorer"></span></span>
+  <ol>
+    <li><a href="#top"><span>My universe</span></a></li>
+    <li><a href="#journey"><span>Exploration log</span></a></li>
+    <li><a href="#expertise"><span>Professional galaxies</span></a></li>
+    <li><a href="#work"><span>Mission archive</span></a></li>
+    <li><a href="#skills"><span>Skill constellations</span></a></li>
+    <li><a href="#experience"><span>Flight record</span></a></li>
+    <li><a href="#beyond"><span>Next frontier</span></a></li>
+    <li><a href="#contact"><span>Open channel</span></a></li>
+  </ol>
+</nav>
 <main id="main">
 
   <!-- 01 · Hero: reference composition. Photo assembled from grid-aligned fragments behind four text zones -->
@@ -52,7 +65,7 @@
     <p class="sr-only">Photograph: an astronaut in a white suit stands on a bright white plain beneath grey clouds.</p>
     <div class="hero__zones">
       <div class="z z--tl">
-        <p class="label label--light rv">01 · Enter my universe</p>
+        <p class="label label--light eyebrow rv">01 · My universe</p>
         <h1 id="hero-title" class="display"><span class="ln"><span>From first</span></span><span class="ln"><span style="--d:80ms">workshop</span></span><span class="ln"><span style="--d:160ms">to stable</span></span><span class="ln"><span style="--d:240ms" class="tone">go-live.</span></span></h1>
         <p class="intro rv" style="--d:260ms">I implement facilities SaaS end to end: requirements and BRDs, configuration, UAT, go-live and hypercare.</p>
       </div>
@@ -77,7 +90,7 @@
   <section class="chapter journey" id="journey" data-env="sky" aria-labelledby="journey-title">
     <figure class="band band--rays" aria-hidden="true"><img src="assets/img/light-rays-2560.webp" srcset="assets/img/light-rays-1280.webp 1280w, assets/img/light-rays-2560.webp 2560w, assets/img/light-rays-3840.webp 3840w" sizes="100vw" alt="" width="2560" height="1265" loading="lazy" decoding="async"></figure>
     <div class="wrap8 band__over">
-      <p class="label rv">02 · My journey</p>
+      <p class="label eyebrow rv">02 · Exploration log</p>
       <h2 id="journey-title" class="heading-l rv">It started on the ground, with how buildings actually run.</h2>
     </div>
     <div class="wrap8 journey__grid">
@@ -102,49 +115,56 @@
   <section class="chapter expertise" id="expertise" data-env="sky" aria-labelledby="expertise-title">
     <div class="wrap8">
       <div class="head">
-        <p class="label rv">03 · Professional galaxies</p>
+        <p class="label eyebrow rv">03 · Professional galaxies</p>
         <h2 id="expertise-title" class="heading-l rv">Seven domains,<br>each charted in real projects.</h2>
         <p class="serif rv" style="--d:120ms">Every area here comes from work I have done, not plans.</p>
       </div>
       <ol class="domains">
-        <li class="domain rv">
-          <p class="label">01</p>
+        <li class="domain rv" id="g-01">
+          <svg class="glyph" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="9" pathLength="1"/><ellipse cx="32" cy="32" rx="24" ry="8" transform="rotate(-18 32 32)" pathLength="1"/></svg>
+          <p class="label">G-01</p>
           <h3>SaaS implementation &amp; delivery</h3>
           <p class="domain__line">Discovery to go-live and hypercare, as primary client lead.</p>
           <div class="domain__body"><p>Enterprise and mid-market onboarding programmes on Facilio, owning scope, timelines, risks and dependencies end to end.</p><p class="meta">Related work: <a href="#work-rollout">Multi-module CAFM rollout</a> · <a href="#work-workspace">AI delivery workspace</a></p></div>
         </li>
-        <li class="domain rv">
-          <p class="label">02</p>
+        <li class="domain rv" id="g-02">
+          <svg class="glyph" viewBox="0 0 64 64" aria-hidden="true"><path d="M32 32c4-2 6 2 3 5-5 4-12 0-11-6 1-9 14-11 20-4 8 9 0 22-12 21-15-1-21-17-14-28" pathLength="1"/></svg>
+          <p class="label">G-02</p>
           <h3>Business analysis &amp; requirements</h3>
           <p class="domain__line">Workshops and process mapping that surface what clients really need.</p>
           <div class="domain__body"><p>Business discovery sessions and stakeholder workshops, with processes mapped in Miro so everyone agrees before anything is built.</p><p class="meta">Related work: <a href="#work-rollout">Multi-module CAFM rollout</a></p></div>
         </li>
-        <li class="domain rv">
-          <p class="label">03</p>
+        <li class="domain rv" id="g-03">
+          <svg class="glyph" viewBox="0 0 64 64" aria-hidden="true"><circle cx="14" cy="46" r="2.5" pathLength="1"/><circle cx="32" cy="16" r="2.5" pathLength="1"/><circle cx="50" cy="44" r="2.5" pathLength="1"/><path d="M15.5 44 30.5 18M33.5 18 48.5 42M16.5 46 47.5 44" pathLength="1"/></svg>
+          <p class="label">G-03</p>
           <h3>Solution architecture &amp; functional design</h3>
           <p class="domain__line">BRDs, functional specifications and FTR documents.</p>
           <div class="domain__body"><p>Business Requirement Documents and functional specifications that solution design and configuration can be checked against. FTR documents prepared alongside <span class="tbd">what FTR covers</span>.</p><p class="meta">Related work: <a href="#work-sla">SLA &amp; escalation automation</a></p></div>
         </li>
-        <li class="domain rv">
-          <p class="label">04</p>
+        <li class="domain rv" id="g-04">
+          <svg class="glyph" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="6" pathLength="1"/><circle cx="32" cy="32" r="15" pathLength="1"/><circle cx="32" cy="32" r="25" pathLength="1"/><circle cx="47" cy="32" r="2" pathLength="1"/><circle cx="14" cy="18" r="2" pathLength="1"/></svg>
+          <p class="label">G-04</p>
           <h3>Enterprise workflows &amp; automation</h3>
           <p class="domain__line">Rules, approvals, escalations and SLA breach notifications.</p>
           <div class="domain__body"><p>Workflow automation, approval chains and escalation protocols, configured so operations meet contractual SLAs and their KPIs. Low-code where it fits, scripting where it doesn’t.</p><p class="meta">Related work: <a href="#work-sla">SLA &amp; escalation automation</a></p></div>
         </li>
-        <li class="domain rv">
-          <p class="label">05</p>
+        <li class="domain rv" id="g-05">
+          <svg class="glyph" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="20" pathLength="1"/><ellipse cx="32" cy="32" rx="20" ry="7" pathLength="1"/><ellipse cx="32" cy="32" rx="8" ry="20" pathLength="1"/></svg>
+          <p class="label">G-05</p>
           <h3>Asset &amp; facility management systems</h3>
           <p class="domain__line">CAFM/IWMS: work orders, PPM, inspections, inventory.</p>
           <div class="domain__body"><p>Service Requests, Work Orders, Preventive Maintenance, Inspections, Contracts and Inventory, plus CMDB and asset management practice.</p><p class="meta">Related work: <a href="#work-rollout">Multi-module CAFM rollout</a> · <a href="#work-data">Data onboarding &amp; migration</a></p></div>
         </li>
-        <li class="domain rv">
-          <p class="label">06</p>
+        <li class="domain rv" id="g-06">
+          <svg class="glyph" viewBox="0 0 64 64" aria-hidden="true"><circle cx="18" cy="32" r="7" pathLength="1"/><circle cx="46" cy="32" r="7" pathLength="1"/><path d="M25 32h14" pathLength="1"/></svg>
+          <p class="label">G-06</p>
           <h3>Integrations &amp; technical problem-solving</h3>
           <p class="domain__line">REST APIs, webhooks, JavaScript scripting, root-cause analysis.</p>
           <div class="domain__body"><p>Integration requirements and data flows defined, webhooks configured, endpoints and payloads debugged in Postman with engineering.</p><p class="meta">Related work: <a href="#work-data">Data onboarding &amp; migration</a> · <a href="#work-agents">AI agent workflows</a></p></div>
         </li>
-        <li class="domain rv">
-          <p class="label">07</p>
+        <li class="domain rv" id="g-07">
+          <svg class="glyph" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="5" pathLength="1"/><path d="M32 8v14M32 42v14M8 32h14M42 32h14M15 15l9 9M40 40l9 9M49 15l-9 9M24 40l-9 9" pathLength="1"/></svg>
+          <p class="label">G-07</p>
           <h3>AI-assisted development &amp; experimentation</h3>
           <p class="domain__line">Since 2026: AI delivery workspace, agent workflows, MCP connectors.</p>
           <div class="domain__body"><p>An AI-assisted delivery workspace, AI agent workflows and reusable skills, and MCP connectors with Facilio Agent. Tools include Lovable and Microsoft Copilot.</p><p class="meta">Related work: <a href="#work-workspace">AI delivery workspace</a> · <a href="#work-agents">AI agent workflows</a></p></div>
@@ -170,8 +190,8 @@
     <div class="wrap8 work__intro">
       <figure class="work__art rv"><img src="assets/img/orb-astronaut-1280.webp" srcset="assets/img/orb-astronaut-1280.webp 1280w, assets/img/orb-astronaut-2560.webp 2560w" sizes="(max-width: 900px) 100vw, 40vw" alt="An astronaut in white mist holds a glass sphere reflecting the sky." width="1280" height="1920" loading="lazy" decoding="async"></figure>
       <div class="work__text">
-        <p class="label rv">04 · Project missions</p>
-        <h2 id="work-title" class="heading-l rv">Every planet<br>is a project.</h2>
+        <p class="label eyebrow rv">04 · Mission archive</p>
+        <h2 id="work-title" class="heading-l rv">Selected projects,<br>one planet each.</h2>
         <p class="caps rv"><b>Client names stay confidential.</b> Figures appear only where they are verified; <b>everything else is marked</b> for me to complete.</p>
         <ol class="work__index rv">
           <li><a href="#work-workspace">AI-assisted delivery workspace</a></li>
@@ -194,6 +214,7 @@
           <figcaption>Diagram · screenshots pending approval</figcaption>
         </figure>
         <div class="case__body">
+          <p class="planet-tag"><span class="ring" aria-hidden="true"></span>Planet · <a href="#g-07">Galaxy G-07 · AI-assisted development</a> · <span class="status">In progress</span></p>
           <p class="label">Mission 01 · 2026 · Co-builder · Internal tool</p>
           <h3 class="case__title">An AI-assisted workspace that runs a customer project end to end</h3>
           <p class="case__outcome">Cuts repetitive documentation work for the implementation team.</p>
@@ -218,6 +239,7 @@
           <figcaption>Diagram · simplified</figcaption>
         </figure>
         <div class="case__body">
+          <p class="planet-tag"><span class="ring" aria-hidden="true"></span>Planet · <a href="#g-07">Galaxy G-07 · AI-assisted development</a> · <span class="status">In progress</span></p>
           <p class="label">Mission 02 · 2026 · Builder</p>
           <h3 class="case__title">AI agent workflows and MCP connectors with Facilio Agent</h3>
           <p class="case__outcome">Automating the repetitive steps of implementation and deployment.</p>
@@ -243,6 +265,7 @@
           <figcaption>Illustrative · not client data</figcaption>
         </figure>
         <div class="case__body">
+          <p class="planet-tag"><span class="ring" aria-hidden="true"></span>Planet · <a href="#g-05">Galaxy G-05 · Asset &amp; facility management</a> · <span class="status">Complete</span></p>
           <p class="label">Mission 03 · <span class="tbd">year</span> · Implementation lead</p>
           <h3 class="case__title">A multi-module CAFM rollout, discovery to hypercare</h3>
           <p class="case__outcome"><span class="tbd">the one change this project made</span></p>
@@ -268,6 +291,7 @@
           <figcaption>Illustrative · not client data</figcaption>
         </figure>
         <div class="case__body">
+          <p class="planet-tag"><span class="ring" aria-hidden="true"></span>Planet · <a href="#g-04">Galaxy G-04 · Enterprise workflows &amp; automation</a> · <span class="status">Complete</span></p>
           <p class="label">Mission 04 · <span class="tbd">year</span> · Solution design &amp; configuration</p>
           <h3 class="case__title">SLA, escalation and breach rules built to a contract</h3>
           <p class="case__outcome"><span class="tbd">the one change this project made</span></p>
@@ -292,6 +316,7 @@
           <figcaption>Diagram · simplified</figcaption>
         </figure>
         <div class="case__body">
+          <p class="planet-tag"><span class="ring" aria-hidden="true"></span>Planet · <a href="#g-06">Galaxy G-06 · Integrations &amp; problem-solving</a> · <span class="status">Complete</span></p>
           <p class="label">Mission 05 · <span class="tbd">year</span> · Data onboarding lead</p>
           <h3 class="case__title">Data onboarding and migration with integrity at go-live</h3>
           <p class="case__outcome"><span class="tbd">the one change this project made</span></p>
@@ -312,7 +337,7 @@
   <section class="chapter skills" id="skills" data-env="space" aria-labelledby="skills-title">
     <div class="wrap8">
       <div class="head">
-        <p class="label rv">05 · Skills &amp; capabilities</p>
+        <p class="label eyebrow rv">05 · Skill constellations</p>
         <h2 id="skills-title" class="heading-l rv">Skills are not bars.<br>They are constellations.</h2>
         <p class="caps rv"><b>Each skill only makes sense next to the others.</b> Select a star to see what it connects to.</p>
       </div>
@@ -378,8 +403,8 @@
   <section class="chapter experience" id="experience" data-env="space" aria-labelledby="experience-title">
     <div class="wrap8 experience__grid">
       <div class="head head--sticky">
-        <p class="label rv">06 · Professional experience</p>
-        <h2 id="experience-title" class="heading-l rv">Mission log.</h2>
+        <p class="label eyebrow rv">06 · Flight record</p>
+        <h2 id="experience-title" class="heading-l rv">Experience,<br>role by role.</h2>
         <p class="caps rv"><b>One organisation, three missions,</b> each wider than the last.</p>
       </div>
       <ol class="log" data-log>
@@ -426,7 +451,7 @@
   <section class="chapter beyond" id="beyond" data-env="space" aria-labelledby="beyond-title">
     <figure class="band band--beyond" aria-hidden="true"><img src="assets/img/breakthrough-2560.webp" srcset="assets/img/breakthrough-1280.webp 1280w, assets/img/breakthrough-2560.webp 2560w, assets/img/breakthrough-3840.webp 3840w" sizes="100vw" alt="" width="2560" height="1440" loading="lazy" decoding="async"></figure>
     <div class="wrap8 band__over band__over--light">
-      <p class="label label--light rv">07 · Beyond the known universe</p>
+      <p class="label label--light eyebrow rv">07 · Next frontier</p>
       <h2 id="beyond-title" class="display display--sm rv">Curiosity is the part of the mission that never ends.</h2>
     </div>
     <div class="wrap8 beyond__grid">
@@ -448,7 +473,7 @@
     <div class="contact__bg" aria-hidden="true"><img src="assets/img/cloud-sea-1280.webp" srcset="assets/img/cloud-sea-1280.webp 1280w, assets/img/cloud-sea-2560.webp 2560w" sizes="100vw" alt="" width="1280" height="1920" loading="lazy" decoding="async"></div>
     <div class="wrap8 contact__grid">
       <div>
-        <p class="label rv">08 · Let’s connect</p>
+        <p class="label eyebrow rv">08 · Open channel</p>
         <h2 id="contact-title" class="display rv">Open a<br>channel.</h2>
         <p class="intro rv">If you are planning a rollout, untangling one, or thinking about AI in delivery, I would like to hear about it.</p>
       </div>
