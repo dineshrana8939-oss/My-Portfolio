@@ -482,3 +482,41 @@ main { overflow-x: clip; } /* hover glows spill 60px past edge elements; clip (n
 @keyframes cue-line { 0% { transform: scaleY(0); transform-origin: top; } 50% { transform: scaleY(1); transform-origin: top; } 51% { transform-origin: bottom; } 100% { transform: scaleY(0); transform-origin: bottom; } }
 @media (max-width: 760px) { .scrollcue { display: none; } }
 @media (prefers-reduced-motion: reduce) { .scrollcue__mouse i, .scrollcue__line { animation: none; } .cursor-ring { display: none; } }
+
+/* ---------- Pull to keep scrolling ---------- */
+/* altitude meter: climbs with the page, races during the dive; colours follow the environment under it */
+.alt { position: fixed; left: var(--m); bottom: 22px; z-index: 40; display: grid; gap: 3px; pointer-events: none; color: var(--ink); opacity: 0; transition: color .6s var(--ease); }
+.alt__k { font: 500 10px/1 var(--f-mono); letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+.alt__v { font: 600 clamp(1.05rem, .9rem + .5vw, 1.35rem)/1.1 var(--f-sans); font-stretch: 116%; letter-spacing: -.01em; font-variant-numeric: tabular-nums; }
+.alt__p { font: 500 11px/1.2 var(--f-mono); letter-spacing: .06em; color: var(--accent); }
+@media (max-width: 760px) { .alt { bottom: 14px; } .alt__k { display: none; } }
+
+/* next-chapter teaser: every chapter ends on a small cliffhanger */
+.next { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 12px; width: max-content; max-width: calc(100% - 2 * var(--m)); margin: 120px auto 0; padding-top: 28px; text-align: center; color: var(--ink); text-decoration: none; }
+.next__k { font: 500 11px/1 var(--f-mono); letter-spacing: .16em; text-transform: uppercase; color: var(--muted); transition: color .3s; }
+.next__t { font-size: clamp(1.3rem, 1rem + 1.1vw, 1.9rem); font-weight: 600; font-stretch: 116%; letter-spacing: -.02em; line-height: 1.1; text-wrap: balance; }
+.next__line { width: 1px; height: 56px; background: linear-gradient(currentColor, transparent); transform-origin: top; animation: cue-line 2.4s var(--ease) infinite; }
+.next:hover .next__k { color: var(--accent); }
+.next:hover .next__line { animation-duration: 1.2s; }
+@media (prefers-reduced-motion: reduce) { .next__line { animation: none; } }
+
+/* headings rise word by word once they enter (JS splits text nodes; reduced motion keeps whole headings) */
+.js h2.words.rv { opacity: 1; transform: none; }
+.js h2.words .w { display: inline-block; opacity: 0; transform: translate3d(0, .55em, 0) rotate(1.5deg); filter: blur(6px); transition: opacity .8s var(--ease), transform 1.05s var(--ease), filter .9s var(--ease); transition-delay: calc(var(--d, 0ms) + var(--wi, 0) * 55ms); }
+.js h2.words.in .w { opacity: 1; transform: none; filter: none; }
+
+/* contact: the arrival */
+.arrival { font: 500 11px/1.5 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin-bottom: 22px; }
+
+/* AI milestones inside the live mission: a lit track, each milestone pops in and its marker glows */
+.ms__intro { font: 500 11px/1 var(--f-mono); letter-spacing: .16em; text-transform: uppercase; color: var(--muted); margin: 6px 0 18px; }
+.milestones { list-style: none; margin: 0; padding: 0 0 0 26px; position: relative; }
+.milestones::before { content: ""; position: absolute; left: 4px; top: 8px; bottom: 8px; width: 1px; background: linear-gradient(var(--accent), rgba(62, 108, 168, .12)); }
+.mission .ms { position: relative; margin: 0 0 22px; padding: 16px 18px 16px; border-radius: 14px; background: color-mix(in srgb, var(--ground) 55%, transparent); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+.ms::before { content: ""; position: absolute; left: -26px; top: 22px; width: 9px; height: 9px; border-radius: 50%; border: 1px solid var(--accent); background: var(--ground); transition: background-color .6s var(--ease) calc(var(--d, 0ms) + 300ms), box-shadow .6s var(--ease) calc(var(--d, 0ms) + 300ms); }
+.ms.in::before { background: var(--accent); box-shadow: 0 0 0 5px rgba(62, 108, 168, .15), 0 0 18px rgba(62, 108, 168, .45); }
+.ms__tag { font: 500 10.5px/1.3 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+.ms h4 { margin: 0 0 6px; font-size: 17px; font-weight: 650; font-stretch: 108%; letter-spacing: -.01em; line-height: 1.2; }
+.ms p:not(.ms__tag):not(.mono) { margin: 0; font-size: 14.5px; line-height: 1.55; color: var(--ink-2); }
+.js .ms.rv { transform: translate3d(0, 34px, 0) scale(.965); }
+.js .ms.rv.in { transform: none; }

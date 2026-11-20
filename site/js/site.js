@@ -6,6 +6,28 @@
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
 
+  /* ---------- Pull to keep scrolling: each chapter ends on a teaser for the next; headings rise word by word ---------- */
+  const NEXT = { experience: 'How a building-ops intern came to run rollouts', journey: 'Seven domains, each charted in real projects', expertise: 'Lift-off: the missions', work: 'How the skills connect', skills: 'Leaving the atmosphere', beyond: 'One last stop: a channel home' };
+  const stops = $$('.route a').map((a) => ({ id: a.getAttribute('href').slice(1), name: a.textContent.trim() }));
+  stops.forEach((s, i) => {
+    const sec = document.getElementById(s.id), nx = stops[i + 1];
+    if (!sec || !nx || !NEXT[s.id]) return;
+    const a = document.createElement('a');
+    a.className = 'next rv'; a.href = `#${nx.id}`;
+    a.innerHTML = `<span class="next__k">Next · ${nx.name}</span><span class="next__t">${NEXT[s.id]}</span><span class="next__line" aria-hidden="true"></span>`; // authored strings only
+    sec.appendChild(a);
+  });
+  if (!reduce) $$('main h2.rv').forEach((h) => {
+    let i = 0;
+    [...h.childNodes].forEach((n) => {
+      if (n.nodeType !== 3) return;
+      const f = document.createDocumentFragment();
+      n.textContent.split(/(\s+)/).forEach((w) => { if (!w) return; if (/^\s+$/.test(w)) { f.append(w); return; } const s = document.createElement('span'); s.className = 'w'; s.style.setProperty('--wi', i++); s.textContent = w; f.append(s); });
+      n.replaceWith(f);
+    });
+    h.classList.add('words');
+  });
+
   /* ---------- Reveal ---------- */
   const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
   // stagger siblings so lists pop up one after another
@@ -131,6 +153,17 @@
   /* ---------- One frame: read all rects, then write ---------- */
   let ticking = false, lastActive = -1;
   const art = $('.work__art img');
+  // altitude meter: each chapter top is an anchor; between anchors the value is interpolated in log space, so the dive into space races
+  const ALT = [['top', 0], ['experience', 4800], ['journey', 6400], ['expertise', 9000], ['work', 12000], ['skills', 32000], ['ascent', 50000], ['beyond', 2.365e22]];
+  const PLACES = [[0, 'Base camp'], [3000, 'The summit'], [6000, 'Ridge at sunrise'], [8500, 'Above the cloud sea'], [11000, 'Rising'], [20000, 'Stratosphere'], [1e5, 'Edge of space'], [4e5, 'Orbit'], [3.8e8, 'Past the Moon'], [2e11, 'Across the Solar System'], [1.8e13, 'Edge of the Solar System'], [9.46e15, 'Interstellar'], [9.46e19, 'Leaving the galaxy'], [2e22, 'Andromeda']];
+  const LY = 9.4607e15;
+  const fmt = (v) => v < 1000 ? `${Math.round(v)} m` : v < LY ? `${(v / 1000).toLocaleString('en-US', { maximumFractionDigits: v < 1e4 ? 1 : 0 })} km` : v < LY * 1e6 ? `${Math.round(v / LY).toLocaleString('en-US')} ly` : `${(v / LY / 1e6).toFixed(1)} M ly`;
+  const alt = document.createElement('div');
+  alt.className = 'alt'; alt.setAttribute('aria-hidden', 'true');
+  alt.innerHTML = '<span class="alt__k">Altitude</span><span class="alt__v">0 m</span><span class="alt__p">Base camp</span>';
+  document.body.appendChild(alt);
+  const altV = $('.alt__v', alt), altP = $('.alt__p', alt), contactSec = $('#contact'), foot = $('.foot');
+  let altLast = '';
   function frame() {
     ticking = false;
     const vh = innerHeight, y = scrollY, docH = document.documentElement.scrollHeight;
@@ -182,6 +215,15 @@
     }
     const midEnv = envs[eR.findIndex((r) => r.top <= vh / 2 && r.bottom > vh / 2)];
     atmos.classList.toggle('is-space', !!midEnv && midEnv.dataset.env === 'space');
+    if (!geo) measure();
+    const mp = y + vh / 2, A = geo.alt;
+    let k = 0; while (k < A.length - 2 && mp >= A[k + 1].y) k++;
+    const t = clamp((mp - A[k].y) / Math.max(A[k + 1].y - A[k].y, 1)), lv = Math.log1p(A[k].v) + (Math.log1p(A[k + 1].v) - Math.log1p(A[k].v)) * t, v = Math.expm1(lv);
+    const home = contactSec && contactSec.getBoundingClientRect().top < vh / 2;
+    const txt = fmt(v), place = home ? 'Signal home' : PLACES.reduce((p, q) => (v >= q[0] ? q[1] : p), PLACES[0][1]);
+    if (txt + place !== altLast) { altLast = txt + place; altV.textContent = txt; altP.textContent = place; }
+    alt.dataset.env = midEnv ? midEnv.dataset.env : 'sky';
+    alt.style.opacity = Math.min(clamp((y - vh * 0.15) / (vh * 0.3)), foot ? clamp((foot.getBoundingClientRect().top - (vh - 120)) / 80) : 1).toFixed(3); // steps aside for the footer
     if (art && !reduce) { const r = art.getBoundingClientRect(); if (r.bottom > 0 && r.top < vh) art.style.setProperty('--pop', (.78 + ease(clamp((vh - r.top) / (vh * .8))) * .22 + clamp((vh - r.top) / (vh + r.height)) * .06).toFixed(4)); }
     cases.forEach((c, i) => c.style.setProperty('--draw', reduce ? 1 : clamp((vh * 0.85 - cR[i].top) / (vh * 0.6)).toFixed(3)));
     if (sR) skyEl.style.setProperty('--sky-p', reduce ? 1 : clamp((vh - sR.top) / (vh * 0.9)).toFixed(3));
@@ -192,7 +234,7 @@
   const zt = $('.zoomtrip'), ztL = $$('.zt__layer'), ztC = $$('.zt__cap');
   let geo = null;
   const top = (el) => el.getBoundingClientRect().top + scrollY;
-  function measure() { geo = { heroT: top(hero), heroH: hero.offsetHeight, ztT: zt ? top(zt) : 0, ztH: zt ? zt.offsetHeight : 1, bands: bands.map((b) => ({ t: top(b.parentElement), h: b.parentElement.offsetHeight })) }; frag.style.setProperty('--ox', `${+frag.dataset.fx * 100}%`); frag.style.setProperty('--oy', `${+frag.dataset.fy * 100}%`); }
+  function measure() { geo = { alt: ALT.map(([id, v]) => ({ y: document.getElementById(id) ? top(document.getElementById(id)) : 0, v })).sort((a, b) => a.y - b.y), heroT: top(hero), heroH: hero.offsetHeight, ztT: zt ? top(zt) : 0, ztH: zt ? zt.offsetHeight : 1, bands: bands.map((b) => ({ t: top(b.parentElement), h: b.parentElement.offsetHeight })) }; frag.style.setProperty('--ox', `${+frag.dataset.fx * 100}%`); frag.style.setProperty('--oy', `${+frag.dataset.fy * 100}%`); }
   const ease = (t) => t * t * (3 - 2 * t);
   function camera(y) {
     if (!geo) measure();
