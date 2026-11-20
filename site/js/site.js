@@ -80,7 +80,7 @@
   }
   const log = $('[data-log]'), bands = $$('.band img'), mist = $('.mist');
   // atmosphere: one fixed photograph per chapter; each loads only when its chapter approaches
-  const atmos = $('.atmos'), aImgs = $$('.atmos__img'), aSecs = aImgs.map((im) => document.getElementById(im.dataset.for));
+  const atmos = $('.atmos'), fore = $('.atmos__fore'), aImgs = $$('.atmos__img'), aSecs = aImgs.map((im) => document.getElementById(im.dataset.for));
   const big = () => innerWidth * Math.min(2, devicePixelRatio || 1) > 1500;
   const load = (im) => { if (!im.getAttribute('src')) im.src = big() ? im.dataset.srcLg : im.dataset.src; };
   const toast = $('[data-toast]');
@@ -152,10 +152,19 @@
     }
     let on = -1; aR.forEach((r, i) => { if (r.top < vh * 0.6 && r.bottom > vh * 0.4) on = i; });
     if (on < 0) on = lastOn; else lastOn = on;
-    aR.forEach((r, i) => { if (r.top < vh * 2 && r.bottom > -vh) load(aImgs[i]); });
+    aR.forEach((r, i) => { if (r.top < vh * 2 && r.bottom > -vh) { load(aImgs[i]); if (fore && !reduce) load(fore); } });
+    // each chapter flies through its own sky: zoom follows that chapter's scroll progress directly (no lerp)
+    const prog = (r) => clamp((vh - r.top) / (vh + r.height));
     aImgs.forEach((im, i) => {
       im.classList.toggle('is-on', i === on);
+      const r = aR[i];
+      if (!reduce && r.top < vh * 2 && r.bottom > -vh) { const p = prog(r); im.style.transform = `scale(${(1.04 + p * .26).toFixed(4)}) translate3d(0, ${(-p * 2.5).toFixed(2)}%, 0)`; }
     });
+    if (fore && !reduce && on > -1) {
+      const q = prog(aR[on]);
+      fore.style.opacity = (Math.sin(Math.PI * q) * .55).toFixed(3);
+      fore.style.transform = `translate3d(0, ${((1 - q) * 30 - 10).toFixed(2)}vh, 0) scale(${(1 + q * .4).toFixed(4)})`;
+    }
     atmos.classList.toggle('is-space', on > -1 && aSecs[on].dataset.env === 'space');
     cases.forEach((c, i) => c.style.setProperty('--draw', reduce ? 1 : clamp((vh * 0.85 - cR[i].top) / (vh * 0.6)).toFixed(3)));
     if (sR) skyEl.style.setProperty('--sky-p', reduce ? 1 : clamp((vh - sR.top) / (vh * 0.9)).toFixed(3));
