@@ -1,0 +1,16 @@
+# build output (CI builds it)
+dist/
+# secrets: never commit
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+# local tooling / OS noise
+node_modules/
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log
+# large originals live outside the repo (see docs/ASSET_MANIFEST.md)
+masters/
